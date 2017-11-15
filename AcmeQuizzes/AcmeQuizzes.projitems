@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{8BCC8954-6598-4137-B687-E24014E8C192}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AcmeQuizzes</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IQuizConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IQuizRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Question.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QuizConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QuizManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QuizRespository.cs" />
+  </ItemGroup>
+</Project>
