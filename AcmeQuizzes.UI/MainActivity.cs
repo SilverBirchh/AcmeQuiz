@@ -22,15 +22,15 @@ namespace AcmeQuizzes.UI
             // Name of the file
             var DbFile = Path.Combine(QuizFolder, "Quiz.sqlite");
 
-          //  if (!System.IO.File.Exists(DbFile))
-          //  {
+          if (!System.IO.File.Exists(DbFile))
+            {
                 // File does not exist so create it
                 var Database = Resources.OpenRawResource(Resource.Raw.Quiz);
                 FileStream WriteStream = new FileStream(DbFile,
                                                         FileMode.OpenOrCreate,
                                                         FileAccess.Write);
                 ReadWriteStream(Database, WriteStream);
-           // }
+            }
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);

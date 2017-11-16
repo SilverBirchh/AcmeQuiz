@@ -12,4 +12,5 @@
 	If you want to try again with a new set of questions tab \"Try again\".</string>
 	<string name="pre_quiz">How questions would you like?</string>
 	<string name="number_rule">You can pick between 1 and 20</string>
+	<string name="next">Next</string>
 </resources>

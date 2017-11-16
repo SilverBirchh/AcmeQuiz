@@ -167,6 +167,9 @@ namespace AcmeQuizzes.UI
 			// aapt resource value: 0x7f050003
 			public const int intro = 2131034115;
 			
+			// aapt resource value: 0x7f05000a
+			public const int next = 2131034122;
+			
 			// aapt resource value: 0x7f050009
 			public const int number_rule = 2131034121;
 			
