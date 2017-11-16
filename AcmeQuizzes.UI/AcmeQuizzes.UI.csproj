@@ -57,6 +57,7 @@
     <Compile Include="PreQuiz.cs" />
     <Compile Include="QuestionActivity.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Finish.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -76,6 +77,7 @@
     <AndroidResource Include="Resources\layout\PreQuiz.axml" />
     <AndroidResource Include="Resources\layout\Question.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\layout\Finish.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
