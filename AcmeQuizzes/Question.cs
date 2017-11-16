@@ -1,9 +1,10 @@
 ﻿using System;
 using SQLite;
+using SQLite.Net.Attributes;
 
 namespace AcmeQuizzes
 {
-    [Table("Quiz")]
+    [Table("Questions")]
     public class Question
     {
         public Question()

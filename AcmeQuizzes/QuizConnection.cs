@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SQLite;
+using SQLite.Net;
 
 namespace AcmeQuizzes
 {
@@ -10,8 +11,10 @@ namespace AcmeQuizzes
 
         public QuizConnection(string dbLocation)
         {
-            connection = new SQLiteConnection(dbLocation);
-              connection.CreateTable<Question>();
+
+            this.connection = new SQLiteConnection(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(), dbLocation);
+            connection.CreateTable<Question>();
+        
         }
 
         public List<Question> GetAllQuestions()
@@ -21,7 +24,7 @@ namespace AcmeQuizzes
 
         public Question GetQuestion(int questionID)
         {
-            return null;
+            return connection.Get<Question>(questionID);
         }
     }
 }

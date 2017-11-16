@@ -32,8 +32,8 @@ namespace AcmeQuizzes.UI
 
             StartQuiz.Click += delegate
             {
-                Intent QuizIntent = new Intent(this, typeof(QuestionActivity));
-                QuizIntent.PutExtra("NumberOfQuestions", NumberOfQuestion.Value);
+                var QuizIntent = new Intent(this, typeof(QuestionActivity));
+                QuizIntent.PutExtra("NumberOfQuestions", NumberOfQuestion.Value.ToString());
                 StartActivity(QuizIntent);
             };
         }

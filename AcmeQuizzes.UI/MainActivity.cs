@@ -22,15 +22,15 @@ namespace AcmeQuizzes.UI
             // Name of the file
             var DbFile = Path.Combine(QuizFolder, "Quiz.sqlite");
 
-            if (!System.IO.File.Exists(DbFile))
-            {
+          //  if (!System.IO.File.Exists(DbFile))
+          //  {
                 // File does not exist so create it
                 var Database = Resources.OpenRawResource(Resource.Raw.Quiz);
                 FileStream WriteStream = new FileStream(DbFile,
                                                         FileMode.OpenOrCreate,
                                                         FileAccess.Write);
                 ReadWriteStream(Database, WriteStream);
-            }
+           // }
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
@@ -53,23 +53,22 @@ namespace AcmeQuizzes.UI
                 StartActivity(GoInstructions);
             };
 
-
         }
 
-        private void ReadWriteStream(Stream database, FileStream writeStream)
+        private void ReadWriteStream(Stream readStream, FileStream writeStream)
         {
             int length = 256;
             byte[] buffer = new byte[length];
-            int BytesRead = database.Read(buffer, 0, length);
+            int BytesRead = readStream.Read(buffer, 0, length);
 
             // Write the bytes
             while (BytesRead > 0)
             {
                 writeStream.Write(buffer, 0, BytesRead);
-                BytesRead = database.Read(buffer, 0, length);
+                BytesRead = readStream.Read(buffer, 0, length);
             }
 
-            database.Close();
+            readStream.Close();
             writeStream.Close();
         }
     }

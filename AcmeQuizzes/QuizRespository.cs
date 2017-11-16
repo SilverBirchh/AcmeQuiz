@@ -19,10 +19,9 @@ namespace AcmeQuizzes
         {
             get
             {
-                string FileName = "Quiz.sqlite";
                 string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); ;
 
-                string path = Path.Combine(FolderPath, FileName);
+                string path = Path.Combine(FolderPath, "Quiz.sqlite");
                 return path;
             }
         }
