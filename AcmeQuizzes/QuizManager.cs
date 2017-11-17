@@ -39,6 +39,7 @@ namespace AcmeQuizzes
 
         public void AnswerQuestion(int QuestionID, int Answer, string CorrectAnswer)
         {
+            Answer++;
             bool IsCorrect = Answer.ToString().Equals(CorrectAnswer);
             AnsweredQuestions.Add(QuestionID, IsCorrect);
         }

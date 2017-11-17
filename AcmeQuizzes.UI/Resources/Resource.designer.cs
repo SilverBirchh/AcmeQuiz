@@ -76,6 +76,9 @@ namespace AcmeQuizzes.UI
 			// aapt resource value: 0x7f060002
 			public const int review = 2131099650;
 			
+			// aapt resource value: 0x7f06000f
+			public const int reviewQuestions = 2131099663;
+			
 			// aapt resource value: 0x7f060001
 			public const int score = 2131099649;
 			
