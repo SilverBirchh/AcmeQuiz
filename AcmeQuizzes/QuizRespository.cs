@@ -10,9 +10,10 @@ namespace AcmeQuizzes
         private IQuizConnection quizConnection = null;
         private string dbLocation;
 
-        private ListDictionary AnsweredQuestions = new ListDictionary();
         List<Question> LimitedQuestions = new List<Question>();
         int QuestionCount = 1;
+
+        public static Dictionary<int, bool> AnsweredQuestions = new Dictionary<int, bool>();
 
         public QuizRespository()
         {
@@ -42,6 +43,8 @@ namespace AcmeQuizzes
         }
 
         public void InitialseQuestions(int NumberOfQuestions) {
+            AnsweredQuestions = new Dictionary<int, bool>();
+
             List<Question> AllQuestions = GetAllQuestions();
             AllQuestions.Randomise();
             for (int i = 1; i <= NumberOfQuestions; i++) {
@@ -57,6 +60,11 @@ namespace AcmeQuizzes
 
         public bool HasNextQuestion() {
             return QuestionCount <= LimitedQuestions.Count;
+        }
+
+        public void AnswerQuestion(int QuestionID, int Answer, string CorrectAnswer) {
+            bool IsCorrect = Answer.ToString().Equals(CorrectAnswer);
+            AnsweredQuestions.Add(QuestionID, IsCorrect);
         }
     }
 }

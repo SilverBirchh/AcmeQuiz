@@ -24,6 +24,13 @@ namespace AcmeQuizzes.UI
 
             Button StartAgain = FindViewById<Button>(Resource.Id.again);
             Button GoHome = FindViewById<Button>(Resource.Id.home);
+            TextView Score = FindViewById<TextView>(Resource.Id.score);
+
+            // Work out the mount of question asked and how many were correct
+            int AmountOfQuestions = QuizRespository.AnsweredQuestions.Count();
+            int CorrectAnswers = QuizRespository.AnsweredQuestions.Where(kvp => kvp.Value).Count();
+
+            Score.Text = $"{CorrectAnswers} / {AmountOfQuestions}";
 
             // Create Click handler to take the user to the PreQuiz page
             StartAgain.Click += delegate
@@ -31,7 +38,6 @@ namespace AcmeQuizzes.UI
                 Intent AgainIntent = new Intent(this, typeof(PreQuiz));
                 StartActivity(AgainIntent);
             };
-
 
             // Create Click handler to take the user to the PreQuiz page
             GoHome.Click += delegate

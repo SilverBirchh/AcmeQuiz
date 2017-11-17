@@ -31,29 +31,31 @@ namespace AcmeQuizzes.UI
             TextView QuestionTitle = FindViewById<TextView>(Resource.Id.questionNumber);
             ListView AnswersView = FindViewById<ListView>(Resource.Id.answers);
 
-            Question firstQuestion = question.GetNextQuestion();
+            Question NextQuestion = question.GetNextQuestion();
             String[] Answers = null;
-            if (firstQuestion.Option5.Equals(""))
+            if (NextQuestion.Option5.Equals(""))
             {
-                Answers = new String[] { firstQuestion.Option1, firstQuestion.Option2, firstQuestion.Option3, firstQuestion.Option4 };
+                Answers = new String[] { NextQuestion.Option1, NextQuestion.Option2, NextQuestion.Option3, NextQuestion.Option4 };
             }
             else
             {
-                Answers = new String[] { firstQuestion.Option1, firstQuestion.Option2, firstQuestion.Option3, firstQuestion.Option4, firstQuestion.Option5 };
+                Answers = new String[] { NextQuestion.Option1, NextQuestion.Option2, NextQuestion.Option3, NextQuestion.Option4, NextQuestion.Option5 };
             }
 
-            QuestionTitle.Text = firstQuestion.QuestionText;
+            QuestionTitle.Text = NextQuestion.QuestionText;
             AnswersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, Answers);
 
             AnswersView.ItemClick += (s, args) =>
             {
+                question.AnswerQuestion(NextQuestion.QuestionID, args.Position, NextQuestion.CorrectAnswer);
+
                 if (!question.HasNextQuestion()) {
                     Intent GoFinish = new Intent(this, typeof(Finish));
                     StartActivity(GoFinish);
                     return;
                 }
 
-                Question NextQuestion = question.GetNextQuestion();
+                NextQuestion = question.GetNextQuestion();
                 String[] NewAnswers = null;
                 if (NextQuestion.Option5.Equals(""))
                 {
