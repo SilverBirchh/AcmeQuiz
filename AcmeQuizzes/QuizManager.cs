@@ -11,10 +11,7 @@ namespace AcmeQuizzes
 
         public static Dictionary<int, bool> AnsweredQuestions = new Dictionary<int, bool>();
 
-        public QuizManager()
-        {
-            
-        }
+        public QuizManager(){}
 
         public void InitialseQuestions(int NumberOfQuestions)
         {

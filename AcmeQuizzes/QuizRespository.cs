@@ -10,13 +10,14 @@ namespace AcmeQuizzes
         private IQuizConnection quizConnection = null;
         private string dbLocation;
 
-        public QuizRespository()
+        public QuizRespository():this(new QuizConnection(DatabaseFilePath)){}
+
+        public QuizRespository(IQuizConnection iQuizConnection)
         {
-            dbLocation = DatabaseFilePath;
-            this.quizConnection = new QuizConnection(dbLocation);
+            this.quizConnection = iQuizConnection;
         }
 
-        private string DatabaseFilePath
+        private static string DatabaseFilePath
         {
             get
             {

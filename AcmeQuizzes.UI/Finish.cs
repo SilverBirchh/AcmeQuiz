@@ -27,8 +27,8 @@ namespace AcmeQuizzes.UI
             TextView Score = FindViewById<TextView>(Resource.Id.score);
 
             // Work out the mount of question asked and how many were correct
-            int AmountOfQuestions = QuizRespository.AnsweredQuestions.Count();
-            int CorrectAnswers = QuizRespository.AnsweredQuestions.Where(kvp => kvp.Value).Count();
+            int AmountOfQuestions = QuizManager.AnsweredQuestions.Count();
+            int CorrectAnswers = QuizManager.AnsweredQuestions.Where(kvp => kvp.Value).Count();
 
             Score.Text = $"{CorrectAnswers} / {AmountOfQuestions}";
 
