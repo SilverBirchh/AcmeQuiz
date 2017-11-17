@@ -54,8 +54,32 @@ namespace AcmeQuizzes.UI
 
             SaveBtn.Click += delegate
             {
-                var SaveIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(SaveIntent);
+                if (QuestionId != null)
+                {
+                    Question question = questionRepository.GetQuestion(Int32.Parse(QuestionId));
+                    question.QuestionText = QuestionTitleView.Text;
+                    question.Option1 = Op1View.Text;
+                    question.Option2 = Op2View.Text;
+                    question.Option3 = Op3View.Text;
+                    question.Option4 = Op4View.Text;
+                    question.Option5 = Op5View.Text;
+                    question.CorrectAnswer = CorrectView.Text;
+                    questionRepository.EditQuestion(question);
+                }
+                else
+                {
+                    Question question = new Question();
+                    question.QuestionText = QuestionTitleView.Text;
+                    question.Option1 = Op1View.Text;
+                    question.Option2 = Op2View.Text;
+                    question.Option3 = Op3View.Text;
+                    question.Option4 = Op4View.Text;
+                    question.Option5 = Op5View.Text;
+                    question.CorrectAnswer = CorrectView.Text;
+                    questionRepository.SaveQuestion(question);
+
+                }
+                Finish();
             };
 
             DltBtn.Click += delegate
@@ -65,14 +89,12 @@ namespace AcmeQuizzes.UI
                     Question question = questionRepository.GetQuestion(Int32.Parse(QuestionId));
                     questionRepository.DeleteQuestion(question);
                 }
-                var DltIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(DltIntent);
+                Finish();
             };
 
             CnlBtn.Click += delegate
             {
-                var CnlIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(CnlIntent);
+                Finish();
             };
 
         }

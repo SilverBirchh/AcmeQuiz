@@ -29,7 +29,7 @@ namespace AcmeQuizzes
 
         public void SaveQuestion(Question question)
         {
-            throw new NotImplementedException();
+            connection.Insert(question);
         }
 
         public void DeleteQuestion(Question question)
@@ -39,7 +39,7 @@ namespace AcmeQuizzes
 
         public void EditQuestion(Question question)
         {
-            throw new NotImplementedException();
+            connection.Update(question);
         }
     }
 }
