@@ -17,6 +17,7 @@ namespace AcmeQuizzes.UI
     public class AdminActivity : Activity
     {
         QuizRespository questionRepository = new QuizRespository(); //TODO: make interface
+        List<Question> AllQuestions;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -46,8 +47,7 @@ namespace AcmeQuizzes.UI
             QuestionsView.ItemClick += (s, args) =>
             {
                 Intent GoEdit = new Intent(this, typeof(EditQuestionActivity));
-                int QuestionId = args.Position + 1;
-                GoEdit.PutExtra("QuestionId", QuestionId.ToString());
+                GoEdit.PutExtra("QuestionId", AllQuestions[args.Position].QuestionID.ToString());
                 StartActivity(GoEdit);
             };
         }
@@ -56,7 +56,7 @@ namespace AcmeQuizzes.UI
         {
             int count = 1;
             List<string> questionArray = new List<string>();
-            List<Question> AllQuestions = questionRepository.GetAllQuestions();
+            AllQuestions = questionRepository.GetAllQuestions();
             foreach (Question question in AllQuestions)
             {
                 questionArray.Add($"{count}. {question.QuestionText}");
