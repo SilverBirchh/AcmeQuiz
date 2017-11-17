@@ -13,4 +13,6 @@
 	<string name="pre_quiz">How questions would you like?</string>
 	<string name="number_rule">You can pick between 1 and 20</string>
 	<string name="next">Next</string>
+	<string name="score">Your final score was...</string>
+	<string name="again">Try again</string>
 </resources>
