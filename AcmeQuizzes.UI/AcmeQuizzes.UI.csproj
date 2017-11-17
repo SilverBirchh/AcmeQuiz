@@ -60,6 +60,7 @@
     <Compile Include="Finish.cs" />
     <Compile Include="ReviewActivity.cs" />
     <Compile Include="AdminActivity.cs" />
+    <Compile Include="EditQuestionActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -82,6 +83,7 @@
     <AndroidResource Include="Resources\layout\Finish.axml" />
     <AndroidResource Include="Resources\layout\Review.axml" />
     <AndroidResource Include="Resources\layout\Admin.axml" />
+    <AndroidResource Include="Resources\layout\EditQuestion.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

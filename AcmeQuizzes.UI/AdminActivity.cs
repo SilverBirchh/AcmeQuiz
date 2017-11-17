@@ -25,8 +25,23 @@ namespace AcmeQuizzes.UI
             // Create your application here
             SetContentView(Resource.Layout.Admin);
             ListView QuestionsView = FindViewById<ListView>(Resource.Id.questionsList);
+            Button HomeBtn = FindViewById<Button>(Resource.Id.home);
+            Button AddBtn = FindViewById<Button>(Resource.Id.add);
+
             string[] Questions = FetchQuestions();
             QuestionsView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, Questions);
+
+            HomeBtn.Click += delegate
+            {
+                Intent GoHome = new Intent(this, typeof(MainActivity));
+                StartActivity(GoHome);
+            };
+
+            AddBtn.Click += delegate
+            {
+                Intent GoEdit = new Intent(this, typeof(EditQuestionActivity));
+                StartActivity(GoEdit);
+            };
         }
 
         private string[] FetchQuestions() // TODO: Change this to just be a DB call.

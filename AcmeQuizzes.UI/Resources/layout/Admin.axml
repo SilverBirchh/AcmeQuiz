@@ -12,12 +12,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button1"
+            android:id="@+id/home"
             android:text="@string/home" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button1"
+            android:id="@+id/add"
             android:text="@string/add" />
         <ListView
             android:minWidth="25px"

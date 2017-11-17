@@ -18,4 +18,13 @@
 	<string name="review">Review Answers</string>
 	<string name="add">Add Question</string>
 	<string name="admin">Admin</string>
+	<string name="id">ID</string>
+	<string name="QText">Question Text</string>
+	<string name="op1">Option 1</string>
+	<string name="op2">Option 2</string>
+	<string name="op3">Option 3</string>
+	<string name="op4">Option 4</string>
+	<string name="op5">Option 5</string>
+	<string name="correct">Correct option</string>
+	<string name="save">Save</string>
 </resources>
