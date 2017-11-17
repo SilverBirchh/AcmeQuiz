@@ -79,7 +79,8 @@ namespace AcmeQuizzes.UI
                     questionRepository.SaveQuestion(question);
 
                 }
-                Finish();
+                var SaveIntent = new Intent(this, typeof(AdminActivity));
+                StartActivity(SaveIntent);
             };
 
             DltBtn.Click += delegate
@@ -89,12 +90,14 @@ namespace AcmeQuizzes.UI
                     Question question = questionRepository.GetQuestion(Int32.Parse(QuestionId));
                     questionRepository.DeleteQuestion(question);
                 }
-                Finish();
+                var DltIntent = new Intent(this, typeof(AdminActivity));
+                StartActivity(DltIntent);
             };
 
             CnlBtn.Click += delegate
             {
-                Finish();
+                var CnlIntent = new Intent(this, typeof(AdminActivity));
+                StartActivity(CnlIntent);
             };
 
         }
