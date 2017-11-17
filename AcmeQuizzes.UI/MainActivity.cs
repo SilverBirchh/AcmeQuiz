@@ -22,7 +22,7 @@ namespace AcmeQuizzes.UI
             // Name of the file
             var DbFile = Path.Combine(QuizFolder, "Quiz.sqlite");
 
-          if (!System.IO.File.Exists(DbFile))
+            if (!System.IO.File.Exists(DbFile))
             {
                 // File does not exist so create it
                 var Database = Resources.OpenRawResource(Resource.Raw.Quiz);
@@ -38,6 +38,8 @@ namespace AcmeQuizzes.UI
             // Grab references to the buttons on the front page
             Button Instructions = FindViewById<Button>(Resource.Id.GoInstructions);
             Button StartQuiz = FindViewById<Button>(Resource.Id.StartQuiz);
+            Button AdminBtn = FindViewById<Button>(Resource.Id.admin);
+
 
             // Create Click handler to take the user to the PreQuiz page
             StartQuiz.Click += delegate
@@ -51,6 +53,12 @@ namespace AcmeQuizzes.UI
             {
                 Intent GoInstructions = new Intent(this, typeof(Instructions));
                 StartActivity(GoInstructions);
+            };
+
+            AdminBtn.Click += delegate
+            {
+                Intent GoAdmin = new Intent(this, typeof(AdminActivity));
+                StartActivity(GoAdmin);
             };
 
         }

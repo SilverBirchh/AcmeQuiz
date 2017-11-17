@@ -16,4 +16,6 @@
 	<string name="score">Your final score was...</string>
 	<string name="again">Try again</string>
 	<string name="review">Review Answers</string>
+	<string name="add">Add Question</string>
+	<string name="admin">Admin</string>
 </resources>

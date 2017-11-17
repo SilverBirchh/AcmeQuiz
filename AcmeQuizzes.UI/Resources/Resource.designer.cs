@@ -46,53 +46,62 @@ namespace AcmeQuizzes.UI
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060006
-			public const int GoHome = 2131099654;
-			
-			// aapt resource value: 0x7f060008
-			public const int GoInstructions = 2131099656;
-			
-			// aapt resource value: 0x7f06000a
-			public const int NumberOfQuestion = 2131099658;
+			// aapt resource value: 0x7f060009
+			public const int GoHome = 2131099657;
 			
 			// aapt resource value: 0x7f06000b
-			public const int PreQuizStart = 2131099659;
-			
-			// aapt resource value: 0x7f060007
-			public const int StartQuiz = 2131099655;
-			
-			// aapt resource value: 0x7f060003
-			public const int again = 2131099651;
-			
-			// aapt resource value: 0x7f06000d
-			public const int answers = 2131099661;
-			
-			// aapt resource value: 0x7f060004
-			public const int home = 2131099652;
-			
-			// aapt resource value: 0x7f06000c
-			public const int questionNumber = 2131099660;
-			
-			// aapt resource value: 0x7f060002
-			public const int review = 2131099650;
-			
-			// aapt resource value: 0x7f06000f
-			public const int reviewQuestions = 2131099663;
-			
-			// aapt resource value: 0x7f060001
-			public const int score = 2131099649;
+			public const int GoInstructions = 2131099659;
 			
 			// aapt resource value: 0x7f06000e
-			public const int scrollView1 = 2131099662;
+			public const int NumberOfQuestion = 2131099662;
 			
-			// aapt resource value: 0x7f060000
-			public const int textView1 = 2131099648;
+			// aapt resource value: 0x7f06000f
+			public const int PreQuizStart = 2131099663;
+			
+			// aapt resource value: 0x7f06000a
+			public const int StartQuiz = 2131099658;
+			
+			// aapt resource value: 0x7f06000c
+			public const int admin = 2131099660;
+			
+			// aapt resource value: 0x7f060006
+			public const int again = 2131099654;
+			
+			// aapt resource value: 0x7f060011
+			public const int answers = 2131099665;
+			
+			// aapt resource value: 0x7f060001
+			public const int button1 = 2131099649;
+			
+			// aapt resource value: 0x7f060007
+			public const int home = 2131099655;
+			
+			// aapt resource value: 0x7f060010
+			public const int questionNumber = 2131099664;
+			
+			// aapt resource value: 0x7f060002
+			public const int questionsList = 2131099650;
 			
 			// aapt resource value: 0x7f060005
-			public const int textView2 = 2131099653;
+			public const int review = 2131099653;
 			
-			// aapt resource value: 0x7f060009
-			public const int textView4 = 2131099657;
+			// aapt resource value: 0x7f060012
+			public const int reviewQuestions = 2131099666;
+			
+			// aapt resource value: 0x7f060004
+			public const int score = 2131099652;
+			
+			// aapt resource value: 0x7f060000
+			public const int scrollView1 = 2131099648;
+			
+			// aapt resource value: 0x7f060003
+			public const int textView1 = 2131099651;
+			
+			// aapt resource value: 0x7f060008
+			public const int textView2 = 2131099656;
+			
+			// aapt resource value: 0x7f06000d
+			public const int textView4 = 2131099661;
 			
 			static Id()
 			{
@@ -108,22 +117,25 @@ namespace AcmeQuizzes.UI
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Finish = 2130903040;
+			public const int Admin = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Instructions = 2130903041;
+			public const int Finish = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Main = 2130903042;
+			public const int Instructions = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int PreQuiz = 2130903043;
+			public const int Main = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int Question = 2130903044;
+			public const int PreQuiz = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int Review = 2130903045;
+			public const int Question = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int Review = 2130903046;
 			
 			static Layout()
 			{
@@ -175,6 +187,12 @@ namespace AcmeQuizzes.UI
 			
 			// aapt resource value: 0x7f050000
 			public const int Hello = 2131034112;
+			
+			// aapt resource value: 0x7f05000e
+			public const int add = 2131034126;
+			
+			// aapt resource value: 0x7f05000f
+			public const int admin = 2131034127;
 			
 			// aapt resource value: 0x7f05000c
 			public const int again = 2131034124;

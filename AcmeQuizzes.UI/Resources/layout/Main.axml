@@ -28,4 +28,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/GoInstructions"
         android:text="@string/instructions" />
+    <Button
+        android:text="@string/admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin" />
 </LinearLayout>
