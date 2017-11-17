@@ -28,5 +28,16 @@
         android:paddingLeft="5dp"
         android:textColor="#ffffffff"
         android:gravity="center_horizontal"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="60dp" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/again"
+        android:text="@string/again" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/home"
+        android:text="@string/home" />
 </LinearLayout>

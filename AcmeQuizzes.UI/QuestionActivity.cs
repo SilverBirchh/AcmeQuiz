@@ -48,8 +48,11 @@ namespace AcmeQuizzes.UI
             AnswersView.ItemClick += (s, args) =>
             {
                 if (!question.HasNextQuestion()) {
+                    Intent GoFinish = new Intent(this, typeof(Finish));
+                    StartActivity(GoFinish);
                     return;
                 }
+
                 Question NextQuestion = question.GetNextQuestion();
                 String[] NewAnswers = null;
                 if (NextQuestion.Option5.Equals(""))

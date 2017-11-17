@@ -20,7 +20,25 @@ namespace AcmeQuizzes.UI
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            SetContentView(Resource.Layout.Finish);
+
+            Button StartAgain = FindViewById<Button>(Resource.Id.again);
+            Button GoHome = FindViewById<Button>(Resource.Id.home);
+
+            // Create Click handler to take the user to the PreQuiz page
+            StartAgain.Click += delegate
+            {
+                Intent AgainIntent = new Intent(this, typeof(PreQuiz));
+                StartActivity(AgainIntent);
+            };
+
+
+            // Create Click handler to take the user to the PreQuiz page
+            GoHome.Click += delegate
+            {
+                Intent HomeIntent = new Intent(this, typeof(MainActivity));
+                StartActivity(HomeIntent);
+            };
         }
     }
 }

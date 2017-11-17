@@ -12,7 +12,7 @@ namespace AcmeQuizzes
 
         private ListDictionary AnsweredQuestions = new ListDictionary();
         List<Question> LimitedQuestions = new List<Question>();
-        int QuestionCount = 0;
+        int QuestionCount = 1;
 
         public QuizRespository()
         {
@@ -49,13 +49,13 @@ namespace AcmeQuizzes
         }
 
         public Question GetNextQuestion () {
-            Question NextQuestion = LimitedQuestions[QuestionCount];
+            Question NextQuestion = LimitedQuestions[QuestionCount - 1];
             QuestionCount++;
             return NextQuestion;
         }
 
         public bool HasNextQuestion() {
-            return QuestionCount < LimitedQuestions.Count;
+            return QuestionCount <= LimitedQuestions.Count;
         }
     }
 }
