@@ -7,6 +7,8 @@ namespace AcmeQuizzes
     {
         Question GetQuestion(int questionID);
         List<Question> GetAllQuestions();
-
+        void SaveQuestion(Question question);
+        void DeleteQuestion(Question question);
+        void EditQuestion(Question question);
     }
 }

@@ -54,14 +54,19 @@ namespace AcmeQuizzes.UI
 
             SaveBtn.Click += delegate
             {
-                var CnlIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(CnlIntent);
+                var SaveIntent = new Intent(this, typeof(AdminActivity));
+                StartActivity(SaveIntent);
             };
 
             DltBtn.Click += delegate
             {
-                var CnlIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(CnlIntent);
+                if (QuestionId != null)
+                {
+                    Question question = questionRepository.GetQuestion(Int32.Parse(QuestionId));
+                    questionRepository.DeleteQuestion(question);
+                }
+                var DltIntent = new Intent(this, typeof(AdminActivity));
+                StartActivity(DltIntent);
             };
 
             CnlBtn.Click += delegate

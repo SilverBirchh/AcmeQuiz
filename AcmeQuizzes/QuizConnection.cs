@@ -14,7 +14,7 @@ namespace AcmeQuizzes
 
             this.connection = new SQLiteConnection(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(), dbLocation);
             connection.CreateTable<Question>();
-        
+
         }
 
         public List<Question> GetAllQuestions()
@@ -25,6 +25,21 @@ namespace AcmeQuizzes
         public Question GetQuestion(int questionID)
         {
             return connection.Get<Question>(questionID);
+        }
+
+        public void SaveQuestion(Question question)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteQuestion(Question question)
+        {
+            connection.Delete(new Question() { QuestionID = question.QuestionID });
+        }
+
+        public void EditQuestion(Question question)
+        {
+            throw new NotImplementedException();
         }
     }
 }

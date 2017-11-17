@@ -46,7 +46,8 @@ namespace AcmeQuizzes.UI
             QuestionsView.ItemClick += (s, args) =>
             {
                 Intent GoEdit = new Intent(this, typeof(EditQuestionActivity));
-                GoEdit.PutExtra("QuestionId", args.Position.ToString());
+                int QuestionId = args.Position + 1;
+                GoEdit.PutExtra("QuestionId", QuestionId.ToString());
                 StartActivity(GoEdit);
             };
         }

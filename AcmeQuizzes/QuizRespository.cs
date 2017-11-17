@@ -37,5 +37,20 @@ namespace AcmeQuizzes
             return quizConnection.GetQuestion(questionID);
         }
 
+        public void SaveQuestion(Question question)
+        {
+            quizConnection.SaveQuestion(question);
+        }
+
+        public void DeleteQuestion(Question question)
+        {
+            quizConnection.DeleteQuestion(question);
+        }
+
+        public void EditQuestion(Question question)
+        {
+            quizConnection.EditQuestion(question);
+        }
+
     }
 }
