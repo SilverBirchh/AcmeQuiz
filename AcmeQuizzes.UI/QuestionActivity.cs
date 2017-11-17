@@ -16,7 +16,7 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Quiz")]
     public class QuestionActivity : Activity
     {
-        QuizRespository question = new QuizRespository(); //TODO: make interface
+        QuizManager questionManager = new QuizManager(); //TODO: make interface
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -24,14 +24,12 @@ namespace AcmeQuizzes.UI
             SetContentView(Resource.Layout.Question);
 
             string NumberOfQuestions = Intent.GetStringExtra("NumberOfQuestions");
-            question.InitialseQuestions(Int32.Parse(NumberOfQuestions));
-
-            List<Question> qs = question.GetAllQuestions();
+            questionManager.InitialseQuestions(Int32.Parse(NumberOfQuestions));
 
             TextView QuestionTitle = FindViewById<TextView>(Resource.Id.questionNumber);
             ListView AnswersView = FindViewById<ListView>(Resource.Id.answers);
 
-            Question NextQuestion = question.GetNextQuestion();
+            Question NextQuestion = questionManager.GetNextQuestion();
             String[] Answers = null;
             if (NextQuestion.Option5.Equals(""))
             {
@@ -47,15 +45,15 @@ namespace AcmeQuizzes.UI
 
             AnswersView.ItemClick += (s, args) =>
             {
-                question.AnswerQuestion(NextQuestion.QuestionID, args.Position, NextQuestion.CorrectAnswer);
+                questionManager.AnswerQuestion(NextQuestion.QuestionID, args.Position, NextQuestion.CorrectAnswer);
 
-                if (!question.HasNextQuestion()) {
+                if (!questionManager.HasNextQuestion()) {
                     Intent GoFinish = new Intent(this, typeof(Finish));
                     StartActivity(GoFinish);
                     return;
                 }
 
-                NextQuestion = question.GetNextQuestion();
+                NextQuestion = questionManager.GetNextQuestion();
                 String[] NewAnswers = null;
                 if (NextQuestion.Option5.Equals(""))
                 {
