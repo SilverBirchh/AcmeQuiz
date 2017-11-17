@@ -17,6 +17,15 @@ namespace AcmeQuizzes.UI
     public class EditQuestionActivity : Activity
     {
         QuizRespository questionRepository = new QuizRespository(); //TODO: make interface
+        string[] correctOptions = new string[] { "1", "2", "3", "4", "5" };
+
+        EditText QuestionTitleView;
+        EditText Op1View;
+        EditText Op2View;
+        EditText Op3View;
+        EditText Op4View;
+        EditText Op5View;
+        EditText CorrectView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,13 +34,13 @@ namespace AcmeQuizzes.UI
             // Create your application here
             SetContentView(Resource.Layout.EditQuestion);
             TextView idView = FindViewById<TextView>(Resource.Id.qId);
-            EditText QuestionTitleView = FindViewById<EditText>(Resource.Id.QTextEdit);
-            EditText Op1View = FindViewById<EditText>(Resource.Id.op1Edit);
-            EditText Op2View = FindViewById<EditText>(Resource.Id.op2Edit);
-            EditText Op3View = FindViewById<EditText>(Resource.Id.op3Edit);
-            EditText Op4View = FindViewById<EditText>(Resource.Id.op4Edit);
-            EditText Op5View = FindViewById<EditText>(Resource.Id.op5Edit);
-            EditText CorrectView = FindViewById<EditText>(Resource.Id.correctEdit);
+            QuestionTitleView = FindViewById<EditText>(Resource.Id.QTextEdit);
+            Op1View = FindViewById<EditText>(Resource.Id.op1Edit);
+            Op2View = FindViewById<EditText>(Resource.Id.op2Edit);
+            Op3View = FindViewById<EditText>(Resource.Id.op3Edit);
+            Op4View = FindViewById<EditText>(Resource.Id.op4Edit);
+            Op5View = FindViewById<EditText>(Resource.Id.op5Edit);
+            CorrectView = FindViewById<EditText>(Resource.Id.correctEdit);
 
             Button SaveBtn = FindViewById<Button>(Resource.Id.save);
             Button CnlBtn = FindViewById<Button>(Resource.Id.cnl);
@@ -54,9 +63,24 @@ namespace AcmeQuizzes.UI
 
             SaveBtn.Click += delegate
             {
+                if (!IsValidQuestion())
+                {
+                    RunOnUiThread(() =>
+                    {
+                        var builder = new AlertDialog.Builder(this);
+                        builder.SetTitle("Invalid Question");
+                        builder.SetMessage("Hmm something is wrong with the question. Please try again.");
+                        builder.SetPositiveButton("Ok", (sender, e) => { });
+                        builder.Show();
+                    }
+                     );
+                    return;
+                }
+
+                Question question;
                 if (QuestionId != null)
                 {
-                    Question question = questionRepository.GetQuestion(Int32.Parse(QuestionId));
+                    question = questionRepository.GetQuestion(Int32.Parse(QuestionId));
                     question.QuestionText = QuestionTitleView.Text;
                     question.Option1 = Op1View.Text;
                     question.Option2 = Op2View.Text;
@@ -68,7 +92,7 @@ namespace AcmeQuizzes.UI
                 }
                 else
                 {
-                    Question question = new Question();
+                    question = new Question();
                     question.QuestionText = QuestionTitleView.Text;
                     question.Option1 = Op1View.Text;
                     question.Option2 = Op2View.Text;
@@ -100,6 +124,21 @@ namespace AcmeQuizzes.UI
                 StartActivity(CnlIntent);
             };
 
+        }
+
+        bool IsValidQuestion()
+        {
+            bool isValid = true;
+            string[] PossibleAnswers = { "1", "2", "3", "4" };
+
+            isValid = QuestionTitleView.Text != null && Op1View.Text != null && Op2View.Text != null && Op3View.Text != null && Op3View.Text != null && Op4View.Text != null && CorrectView.Text != null;
+
+            if (isValid)
+            {
+                isValid = QuestionTitleView.Text.Trim() != "" && Op1View.Text.Trim() != "" && Op2View.Text.Trim() != "" && Op3View.Text.Trim() != "" && Op3View.Text.Trim() != "" && Op4View.Text.Trim() != "" && (PossibleAnswers.Contains(CorrectView.Text) || (Op5View.Text != null && Op5View.Text != "" && CorrectView.Text.Equals("5")));
+            }
+
+            return isValid;
         }
     }
 }
