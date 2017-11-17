@@ -27,4 +27,6 @@
 	<string name="op5">Option 5</string>
 	<string name="correct">Correct option</string>
 	<string name="save">Save</string>
+	<string name="cnl">Cancel</string>
+	<string name="dlt">Delete</string>
 </resources>

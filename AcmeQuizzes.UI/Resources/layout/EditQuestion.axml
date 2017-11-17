@@ -21,7 +21,7 @@
             p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/textView2"
+            p1:id="@+id/qId"
             p1:gravity="center_horizontal" />
         <TextView
             p1:text="@string/QText"
@@ -33,7 +33,7 @@
         <EditText
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/editText1"
+            p1:id="@+id/QTextEdit"
             p1:gravity="center_horizontal" />
         <TextView
             p1:text="@string/op1"
@@ -45,7 +45,7 @@
         <EditText
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/editText2"
+            p1:id="@+id/op1Edit"
             p1:gravity="center_horizontal" />
         <TextView
             p1:text="@string/op2"
@@ -57,7 +57,7 @@
         <EditText
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/editText3"
+            p1:id="@+id/op2Edit"
             p1:gravity="center_horizontal" />
         <TextView
             p1:text="@string/op3"
@@ -69,7 +69,7 @@
         <EditText
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/editText4"
+            p1:id="@+id/op3Edit"
             p1:gravity="center_horizontal" />
         <TextView
             p1:text="@string/op4"
@@ -81,7 +81,7 @@
         <EditText
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/editText5"
+            p1:id="@+id/op4Edit"
             p1:gravity="center_horizontal" />
         <TextView
             p1:text="@string/op5"
@@ -93,7 +93,7 @@
         <EditText
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/editText6"
+            p1:id="@+id/op5Edit"
             p1:gravity="center_horizontal" />
         <TextView
             p1:text="@string/correct"
@@ -105,7 +105,7 @@
         <EditText
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/editText7"
+            p1:id="@+id/correctEdit"
             p1:gravity="center_horizontal" />
         <Button
             p1:text="@string/save"
@@ -113,9 +113,14 @@
             p1:layout_height="wrap_content"
             p1:id="@+id/save" />
         <Button
-            p1:text="@string/home"
+            p1:text="@string/dlt"
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/home" />
+            p1:id="@+id/dlt" />
+        <Button
+            p1:text="@string/cnl"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/cnl" />
     </LinearLayout>
 </ScrollView>

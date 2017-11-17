@@ -8,9 +8,8 @@ namespace AcmeQuizzes
     public class QuizRespository : IQuizRepository
     {
         private IQuizConnection quizConnection = null;
-        private string dbLocation;
 
-        public QuizRespository():this(new QuizConnection(DatabaseFilePath)){}
+        public QuizRespository() : this(new QuizConnection(DatabaseFilePath)) { }
 
         public QuizRespository(IQuizConnection iQuizConnection)
         {

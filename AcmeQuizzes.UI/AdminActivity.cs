@@ -42,6 +42,13 @@ namespace AcmeQuizzes.UI
                 Intent GoEdit = new Intent(this, typeof(EditQuestionActivity));
                 StartActivity(GoEdit);
             };
+
+            QuestionsView.ItemClick += (s, args) =>
+            {
+                Intent GoEdit = new Intent(this, typeof(EditQuestionActivity));
+                GoEdit.PutExtra("QuestionId", args.Position.ToString());
+                StartActivity(GoEdit);
+            };
         }
 
         private string[] FetchQuestions() // TODO: Change this to just be a DB call.

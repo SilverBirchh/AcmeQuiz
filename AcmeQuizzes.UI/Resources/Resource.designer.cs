@@ -46,53 +46,44 @@ namespace AcmeQuizzes.UI
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060012
-			public const int GoHome = 2131099666;
-			
-			// aapt resource value: 0x7f060014
-			public const int GoInstructions = 2131099668;
+			// aapt resource value: 0x7f060015
+			public const int GoHome = 2131099669;
 			
 			// aapt resource value: 0x7f060017
-			public const int NumberOfQuestion = 2131099671;
+			public const int GoInstructions = 2131099671;
 			
-			// aapt resource value: 0x7f060018
-			public const int PreQuizStart = 2131099672;
+			// aapt resource value: 0x7f06001a
+			public const int NumberOfQuestion = 2131099674;
 			
-			// aapt resource value: 0x7f060013
-			public const int StartQuiz = 2131099667;
+			// aapt resource value: 0x7f06001b
+			public const int PreQuizStart = 2131099675;
+			
+			// aapt resource value: 0x7f060007
+			public const int QTextEdit = 2131099655;
+			
+			// aapt resource value: 0x7f060016
+			public const int StartQuiz = 2131099670;
 			
 			// aapt resource value: 0x7f060002
 			public const int add = 2131099650;
 			
-			// aapt resource value: 0x7f060015
-			public const int admin = 2131099669;
+			// aapt resource value: 0x7f060018
+			public const int admin = 2131099672;
 			
-			// aapt resource value: 0x7f060011
-			public const int again = 2131099665;
+			// aapt resource value: 0x7f060013
+			public const int again = 2131099667;
 			
-			// aapt resource value: 0x7f06001a
-			public const int answers = 2131099674;
+			// aapt resource value: 0x7f06001d
+			public const int answers = 2131099677;
 			
-			// aapt resource value: 0x7f060007
-			public const int editText1 = 2131099655;
-			
-			// aapt resource value: 0x7f060008
-			public const int editText2 = 2131099656;
-			
-			// aapt resource value: 0x7f060009
-			public const int editText3 = 2131099657;
-			
-			// aapt resource value: 0x7f06000a
-			public const int editText4 = 2131099658;
-			
-			// aapt resource value: 0x7f06000b
-			public const int editText5 = 2131099659;
-			
-			// aapt resource value: 0x7f06000c
-			public const int editText6 = 2131099660;
+			// aapt resource value: 0x7f060010
+			public const int cnl = 2131099664;
 			
 			// aapt resource value: 0x7f06000d
-			public const int editText7 = 2131099661;
+			public const int correctEdit = 2131099661;
+			
+			// aapt resource value: 0x7f06000f
+			public const int dlt = 2131099663;
 			
 			// aapt resource value: 0x7f060001
 			public const int home = 2131099649;
@@ -100,23 +91,41 @@ namespace AcmeQuizzes.UI
 			// aapt resource value: 0x7f060004
 			public const int linearLayout1 = 2131099652;
 			
-			// aapt resource value: 0x7f060019
-			public const int questionNumber = 2131099673;
+			// aapt resource value: 0x7f060008
+			public const int op1Edit = 2131099656;
+			
+			// aapt resource value: 0x7f060009
+			public const int op2Edit = 2131099657;
+			
+			// aapt resource value: 0x7f06000a
+			public const int op3Edit = 2131099658;
+			
+			// aapt resource value: 0x7f06000b
+			public const int op4Edit = 2131099659;
+			
+			// aapt resource value: 0x7f06000c
+			public const int op5Edit = 2131099660;
+			
+			// aapt resource value: 0x7f060006
+			public const int qId = 2131099654;
+			
+			// aapt resource value: 0x7f06001c
+			public const int questionNumber = 2131099676;
 			
 			// aapt resource value: 0x7f060003
 			public const int questionsList = 2131099651;
 			
-			// aapt resource value: 0x7f060010
-			public const int review = 2131099664;
+			// aapt resource value: 0x7f060012
+			public const int review = 2131099666;
 			
-			// aapt resource value: 0x7f06001b
-			public const int reviewQuestions = 2131099675;
+			// aapt resource value: 0x7f06001e
+			public const int reviewQuestions = 2131099678;
 			
 			// aapt resource value: 0x7f06000e
 			public const int save = 2131099662;
 			
-			// aapt resource value: 0x7f06000f
-			public const int score = 2131099663;
+			// aapt resource value: 0x7f060011
+			public const int score = 2131099665;
 			
 			// aapt resource value: 0x7f060000
 			public const int scrollView1 = 2131099648;
@@ -124,11 +133,11 @@ namespace AcmeQuizzes.UI
 			// aapt resource value: 0x7f060005
 			public const int textView1 = 2131099653;
 			
-			// aapt resource value: 0x7f060006
-			public const int textView2 = 2131099654;
+			// aapt resource value: 0x7f060014
+			public const int textView2 = 2131099668;
 			
-			// aapt resource value: 0x7f060016
-			public const int textView4 = 2131099670;
+			// aapt resource value: 0x7f060019
+			public const int textView4 = 2131099673;
 			
 			static Id()
 			{
@@ -233,8 +242,14 @@ namespace AcmeQuizzes.UI
 			// aapt resource value: 0x7f050002
 			public const int app_name = 2131034114;
 			
+			// aapt resource value: 0x7f050019
+			public const int cnl = 2131034137;
+			
 			// aapt resource value: 0x7f050017
 			public const int correct = 2131034135;
+			
+			// aapt resource value: 0x7f05001a
+			public const int dlt = 2131034138;
 			
 			// aapt resource value: 0x7f050005
 			public const int home = 2131034117;
