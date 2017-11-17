@@ -43,6 +43,7 @@ namespace AcmeQuizzes
 
         public void InitialseQuestions(int NumberOfQuestions) {
             List<Question> AllQuestions = GetAllQuestions();
+            AllQuestions.Randomise();
             for (int i = 1; i <= NumberOfQuestions; i++) {
                 LimitedQuestions.Add(AllQuestions[i]);
             }

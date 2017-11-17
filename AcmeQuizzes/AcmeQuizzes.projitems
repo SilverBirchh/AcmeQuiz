@@ -15,5 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)QuizConnection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QuizManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QuizRespository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shuffle.cs" />
   </ItemGroup>
 </Project>
