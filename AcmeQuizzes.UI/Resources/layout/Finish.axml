@@ -33,6 +33,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/review"
+        android:text="@string/review" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/again"
         android:text="@string/again" />
     <Button

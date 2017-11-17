@@ -24,6 +24,7 @@ namespace AcmeQuizzes.UI
 
             Button StartAgain = FindViewById<Button>(Resource.Id.again);
             Button GoHome = FindViewById<Button>(Resource.Id.home);
+            Button GoReview = FindViewById<Button>(Resource.Id.review);
             TextView Score = FindViewById<TextView>(Resource.Id.score);
 
             // Work out the mount of question asked and how many were correct
@@ -44,6 +45,12 @@ namespace AcmeQuizzes.UI
             {
                 Intent HomeIntent = new Intent(this, typeof(MainActivity));
                 StartActivity(HomeIntent);
+            };
+
+            GoReview.Click += delegate
+            {
+                Intent ReviewIntent = new Intent(this, typeof(ReviewActivity));
+                StartActivity(ReviewIntent);
             };
         }
     }
