@@ -53,14 +53,14 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Instructions.cs" />
-    <Compile Include="PreQuiz.cs" />
     <Compile Include="QuestionActivity.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Finish.cs" />
     <Compile Include="ReviewActivity.cs" />
     <Compile Include="AdminActivity.cs" />
     <Compile Include="EditQuestionActivity.cs" />
+    <Compile Include="PreQuizActivity.cs" />
+    <Compile Include="ResultsActivity.cs" />
+    <Compile Include="InstructionsActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -32,7 +32,7 @@ namespace AcmeQuizzes.UI
             // Create Click handler to take the user to the PreQuiz page
             StartAgain.Click += delegate
             {
-                Intent AgainIntent = new Intent(this, typeof(PreQuiz));
+                Intent AgainIntent = new Intent(this, typeof(PreQuizActivity));
                 StartActivity(AgainIntent);
             };
 

@@ -47,8 +47,9 @@ namespace AcmeQuizzes.UI
             {
                 questionManager.AnswerQuestion(NextQuestion.QuestionID, args.Position, NextQuestion.CorrectAnswer);
 
-                if (!questionManager.HasNextQuestion()) {
-                    Intent GoFinish = new Intent(this, typeof(Finish));
+                if (!questionManager.HasNextQuestion())
+                {
+                    Intent GoFinish = new Intent(this, typeof(ResultsActivity));
                     StartActivity(GoFinish);
                     return;
                 }

@@ -1,20 +1,13 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace AcmeQuizzes.UI
 {
-    [Activity(Label = "Finish")]
-    public class Finish : Activity
+    [Activity(Label = "ResultsActivity")]
+    public class ResultsActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -36,7 +29,7 @@ namespace AcmeQuizzes.UI
             // Create Click handler to take the user to the PreQuiz page
             StartAgain.Click += delegate
             {
-                Intent AgainIntent = new Intent(this, typeof(PreQuiz));
+                Intent AgainIntent = new Intent(this, typeof(PreQuizActivity));
                 StartActivity(AgainIntent);
             };
 

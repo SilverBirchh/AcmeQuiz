@@ -44,14 +44,14 @@ namespace AcmeQuizzes.UI
             // Create Click handler to take the user to the PreQuiz page
             StartQuiz.Click += delegate
             {
-                Intent GoPreQuiz = new Intent(this, typeof(PreQuiz));
+                Intent GoPreQuiz = new Intent(this, typeof(PreQuizActivity));
                 StartActivity(GoPreQuiz);
             };
 
             // Create Click handler to take the user to the Instructions page
             Instructions.Click += delegate
             {
-                Intent GoInstructions = new Intent(this, typeof(Instructions));
+                Intent GoInstructions = new Intent(this, typeof(InstructionsActivity));
                 StartActivity(GoInstructions);
             };
 
