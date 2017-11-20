@@ -65,15 +65,7 @@ namespace AcmeQuizzes.UI
             {
                 if (!IsValidQuestion())
                 {
-                    RunOnUiThread(() =>
-                    {
-                        var builder = new AlertDialog.Builder(this);
-                        builder.SetTitle("Invalid Question");
-                        builder.SetMessage("Hmm something is wrong with the question. Please try again.");
-                        builder.SetPositiveButton("Ok", (sender, e) => { });
-                        builder.Show();
-                    }
-                     );
+                    ThrowAlert();
                     return;
                 }
 
@@ -81,26 +73,12 @@ namespace AcmeQuizzes.UI
                 if (QuestionId != null)
                 {
                     question = questionRepository.GetQuestion(Int32.Parse(QuestionId));
-                    question.QuestionText = QuestionTitleView.Text;
-                    question.Option1 = Op1View.Text;
-                    question.Option2 = Op2View.Text;
-                    question.Option3 = Op3View.Text;
-                    question.Option4 = Op4View.Text;
-                    question.Option5 = Op5View.Text;
-                    question.CorrectAnswer = CorrectView.Text;
-                    questionRepository.EditQuestion(question);
+                    questionRepository.EditQuestion(SetQuestionAttributes(question));
                 }
                 else
                 {
                     question = new Question();
-                    question.QuestionText = QuestionTitleView.Text;
-                    question.Option1 = Op1View.Text;
-                    question.Option2 = Op2View.Text;
-                    question.Option3 = Op3View.Text;
-                    question.Option4 = Op4View.Text;
-                    question.Option5 = Op5View.Text;
-                    question.CorrectAnswer = CorrectView.Text;
-                    questionRepository.SaveQuestion(question);
+                    questionRepository.SaveQuestion(SetQuestionAttributes(question));
 
                 }
                 var SaveIntent = new Intent(this, typeof(AdminActivity));
@@ -139,6 +117,31 @@ namespace AcmeQuizzes.UI
             }
 
             return isValid;
+        }
+
+
+        Question SetQuestionAttributes(Question question)
+        {
+            question.QuestionText = QuestionTitleView.Text;
+            question.Option1 = Op1View.Text;
+            question.Option2 = Op2View.Text;
+            question.Option3 = Op3View.Text;
+            question.Option4 = Op4View.Text;
+            question.Option5 = Op5View.Text;
+            question.CorrectAnswer = CorrectView.Text;
+            return question;
+        }
+
+        void ThrowAlert()
+        {
+            RunOnUiThread(() =>
+            {
+                var builder = new AlertDialog.Builder(this);
+                builder.SetTitle("Invalid Question");
+                builder.SetMessage("Hmm something is wrong with the question. Please try again.");
+                builder.SetPositiveButton("Ok", (sender, e) => { });
+                builder.Show();
+            });
         }
     }
 }

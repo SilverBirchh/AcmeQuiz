@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-// Methods to shuffle a list see https://stackoverflow.com/questions/273313/randomize-a-listt?noredirect=1&lq=1
+// Methods to shuffle a list<?> see https://stackoverflow.com/questions/273313/randomize-a-listt?noredirect=1&lq=1
 namespace AcmeQuizzes
 {
     public static class Shuffle

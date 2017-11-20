@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace AcmeQuizzes
 {
+    /**
+     * Interface for UI Clients to use to request Questions and to perform CRUD operations
+     */
     public interface IQuizConnection
     {
         Question GetQuestion(int questionID);
