@@ -16,9 +16,11 @@ namespace AcmeQuizzes.UI
 
             // First task is to create the question if they don't currently exist
             var QuizFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            // Name of the file
+
+            // Fully qualified path of the DB file
             var DbFile = Path.Combine(QuizFolder, "Quiz.sqlite");
 
+            // Checks if the file already exists on the users device
             if (!System.IO.File.Exists(DbFile))
             {
                 // File does not exist so create it
@@ -33,33 +35,37 @@ namespace AcmeQuizzes.UI
             SetContentView(Resource.Layout.Main);
 
             // Grab references to the buttons on the front page
-            Button Instructions = FindViewById<Button>(Resource.Id.GoInstructions);
-            Button StartQuiz = FindViewById<Button>(Resource.Id.StartQuiz);
+            Button InstructionsBtn = FindViewById<Button>(Resource.Id.GoInstructions);
+            Button StartQuizBtn = FindViewById<Button>(Resource.Id.StartQuiz);
             Button AdminBtn = FindViewById<Button>(Resource.Id.admin);
 
-
             // Create Click handler to take the user to the PreQuiz page
-            StartQuiz.Click += delegate
+            StartQuizBtn.Click += delegate
             {
-                Intent GoPreQuiz = new Intent(this, typeof(PreQuizActivity));
-                StartActivity(GoPreQuiz);
+                Intent PreQuizIntent = new Intent(this, typeof(PreQuizActivity));
+                StartActivity(PreQuizIntent);
             };
 
             // Create Click handler to take the user to the Instructions page
-            Instructions.Click += delegate
+            InstructionsBtn.Click += delegate
             {
-                Intent GoInstructions = new Intent(this, typeof(InstructionsActivity));
-                StartActivity(GoInstructions);
+                Intent InstructionsIntent = new Intent(this, typeof(InstructionsActivity));
+                StartActivity(InstructionsIntent);
             };
 
+            // Create Click handler to take the user to the Admin page
+            // TODO: Add user validation here
             AdminBtn.Click += delegate
             {
-                Intent GoAdmin = new Intent(this, typeof(AdminActivity));
-                StartActivity(GoAdmin);
+                Intent AdminIntent = new Intent(this, typeof(AdminActivity));
+                StartActivity(AdminIntent);
             };
 
         }
 
+        /*
+         * Method to write a file to the users device
+         */
         private void ReadWriteStream(Stream readStream, FileStream writeStream)
         {
             int length = 256;
