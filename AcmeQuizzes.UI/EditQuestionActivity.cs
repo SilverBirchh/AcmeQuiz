@@ -1,19 +1,13 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace AcmeQuizzes.UI
 {
-    [Activity(Label = "EditQuestionActivity")]
+    [Activity(Label = "Edit Question")]
     public class EditQuestionActivity : Activity
     {
         QuizRespository questionRepository = new QuizRespository(); //TODO: make interface

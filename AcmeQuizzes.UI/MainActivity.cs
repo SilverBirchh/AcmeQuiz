@@ -3,9 +3,6 @@ using Android.Widget;
 using Android.OS;
 using Android.Content;
 using System.IO;
-using System;
-using AcmeQuizzes;
-using System.Collections.Generic;
 
 namespace AcmeQuizzes.UI
 {
