@@ -27,7 +27,7 @@ namespace AcmeQuizzes.UI
             // number of questions the user asked for.
             StartQuizBtn.Click += delegate
             {
-                var QuizIntent = new Intent(this, typeof(QuestionActivity));
+                Intent QuizIntent = new Intent(this, typeof(QuestionActivity));
                 QuizIntent.PutExtra("NumberOfQuestions", NumberOfQuestion.Value.ToString());
                 StartActivity(QuizIntent);
             };

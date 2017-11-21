@@ -93,7 +93,7 @@ namespace AcmeQuizzes.UI
                 }
 
                 // Return to the Admin page
-                var SaveIntent = new Intent(this, typeof(AdminActivity));
+                Intent SaveIntent = new Intent(this, typeof(AdminActivity));
                 StartActivity(SaveIntent);
             };
 
@@ -109,14 +109,14 @@ namespace AcmeQuizzes.UI
                 }
 
                 // Return to the Admin page
-                var DltIntent = new Intent(this, typeof(AdminActivity));
+                Intent DltIntent = new Intent(this, typeof(AdminActivity));
                 StartActivity(DltIntent);
             };
 
             // Add a click listener to the cancle button to return to the admin page
             CnlBtn.Click += delegate
             {
-                var CnlIntent = new Intent(this, typeof(AdminActivity));
+                Intent CnlIntent = new Intent(this, typeof(AdminActivity));
                 StartActivity(CnlIntent);
             };
 
@@ -134,15 +134,30 @@ namespace AcmeQuizzes.UI
             // The possible correct answers for a question. Minus the option "5".
             string[] PossibleAnswers = { "1", "2", "3", "4" };
 
-            // Check to see if none of the required entries are null
-            isValid = QuestionTitleView.Text != null && Op1View.Text != null && Op2View.Text != null && Op3View.Text != null && Op3View.Text != null && Op4View.Text != null && CorrectView.Text != null;
+            // Check to see if none of the required entries are null. Checks if each required input is not blank. 
+            isValid = QuestionTitleView.Text != null
+                                       && Op1View.Text != null
+                                       && Op2View.Text != null
+                                       && Op3View.Text != null
+                                       && Op3View.Text != null
+                                       && Op4View.Text != null
+                                       && CorrectView.Text != null
+                                       && QuestionTitleView.Text.Trim() != ""
+                                       && Op1View.Text.Trim() != ""
+                                       && Op2View.Text.Trim() != ""
+                                       && Op3View.Text.Trim() != ""
+                                       && Op3View.Text.Trim() != ""
+                                       && Op4View.Text.Trim() != "";
 
             // If the first check is okay this step is run
             if (isValid)
             {
-                // Checks if each required input is not blank. Checks if CorrectView input contains a value from the PossibleAnswers array.
+                // Checks if CorrectView input contains a value from the PossibleAnswers array.
                 // Finally checks if the Option5 answer is not null or blank and the the correct answer is in PossibleAnswers or equals 5.
-                isValid = QuestionTitleView.Text.Trim() != "" && Op1View.Text.Trim() != "" && Op2View.Text.Trim() != "" && Op3View.Text.Trim() != "" && Op3View.Text.Trim() != "" && Op4View.Text.Trim() != "" && (PossibleAnswers.Contains(CorrectView.Text) || (Op5View.Text != null && Op5View.Text != "" && (CorrectView.Text.Equals("5") || PossibleAnswers.Contains(CorrectView.Text))));
+                isValid = (PossibleAnswers.Contains(CorrectView.Text)
+                                               || (Op5View.Text != null && Op5View.Text != ""
+                                               && (CorrectView.Text.Equals("5")
+                                                       || PossibleAnswers.Contains(CorrectView.Text))));
             }
 
             return isValid;
