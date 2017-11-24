@@ -35,7 +35,6 @@ namespace AcmeQuizzes
          * questions everytime. Finally adds to LimitedQuestions List the 
          * number of questions that the user requested.
          * 
-         * TODO: This does not currently work. There is some copy by reference goin on I think
          * 
          * @param int NumberOfQuestions - The number of questions the user wants to answer
          */
@@ -48,7 +47,7 @@ namespace AcmeQuizzes
             List<Question> AllQuestions = quizRepository.GetAllQuestions();
 
             // Filter out the questions that the user has already been asked. This can mean AllQuestions could be size 0
-            var FilteredQuestions = quizRepository.GetAllQuestions().Where((question) => !PreviousQuestions.Contains(question.QuestionID));
+            var FilteredQuestions = AllQuestions.Where((question) => !PreviousQuestions.Contains(question.QuestionID));
 
             // In this case there are not enough questions left to give to the user
             if (FilteredQuestions.Count() < NumberOfQuestions)
@@ -61,7 +60,7 @@ namespace AcmeQuizzes
                 AllQuestions.Randomise();
                 for (int i = LimitedQuestions.Count() + 1; i <= NumberOfQuestions; i++)
                 {
-                    LimitedQuestions.Add(AllQuestions[i]);
+                    LimitedQuestions.Add(AllQuestions[i - 1]);
                 }
 
                 // All questions have been asked so must reset this list 
@@ -70,10 +69,10 @@ namespace AcmeQuizzes
             else
             {
                 // Randomise the list of questions so they appear in a new order everytime
-                AllQuestions.Randomise();
+                FilteredQuestions.ToList().Randomise();
                 for (int i = 1; i <= NumberOfQuestions; i++)
                 {
-                    LimitedQuestions.Add(AllQuestions[i]);
+                    LimitedQuestions.Add(FilteredQuestions.ToList()[i - 1]);
                 }
             }
         }
