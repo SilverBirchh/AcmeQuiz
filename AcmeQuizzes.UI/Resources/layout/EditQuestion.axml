@@ -24,7 +24,7 @@
             p1:id="@+id/qId"
             p1:gravity="center_horizontal" />
         <TextView
-            p1:text="@string/QText"
+            p1:text="@string/qText"
             p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"

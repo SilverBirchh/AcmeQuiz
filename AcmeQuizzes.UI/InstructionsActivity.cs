@@ -16,13 +16,13 @@ namespace AcmeQuizzes.UI
             SetContentView(Resource.Layout.Instructions);
 
             // Grab the button on the page
-            Button HomeBtn = FindViewById<Button>(Resource.Id.GoHome);
+            Button homeBtn = FindViewById<Button>(Resource.Id.GoHome);
 
             // Attach Click event to go to home page
-            HomeBtn.Click += delegate
+            homeBtn.Click += delegate
             {
-                Intent GoHome = new Intent(this, typeof(MainActivity));
-                StartActivity(GoHome);
+                Intent goHome = new Intent(this, typeof(MainActivity));
+                StartActivity(goHome);
             };
 
         }

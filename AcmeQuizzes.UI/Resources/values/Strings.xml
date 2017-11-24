@@ -19,7 +19,7 @@
 	<string name="add">Add Question</string>
 	<string name="admin">Admin</string>
 	<string name="id">ID</string>
-	<string name="QText">Question Text</string>
+	<string name="qText">Question Text</string>
 	<string name="op1">Option 1</string>
 	<string name="op2">Option 2</string>
 	<string name="op3">Option 3</string>

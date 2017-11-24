@@ -16,20 +16,20 @@ namespace AcmeQuizzes.UI
             SetContentView(Resource.Layout.PreQuiz);
 
             // Set the min / max values of the Number Picker
-            NumberPicker NumberOfQuestion = FindViewById<NumberPicker>(Resource.Id.NumberOfQuestion);
-            NumberOfQuestion.MaxValue = 20;
-            NumberOfQuestion.MinValue = 1;
+            NumberPicker numberOfQuestion = FindViewById<NumberPicker>(Resource.Id.NumberOfQuestion);
+            numberOfQuestion.MaxValue = 20;
+            numberOfQuestion.MinValue = 1;
 
             // Grab the button on the page
-            Button StartQuizBtn = FindViewById<Button>(Resource.Id.PreQuizStart);
+            Button startQuizBtn = FindViewById<Button>(Resource.Id.PreQuizStart);
 
             // Create Click handler to take the user to the quiz page. Adds the
             // number of questions the user asked for.
-            StartQuizBtn.Click += delegate
+            startQuizBtn.Click += delegate
             {
-                Intent QuizIntent = new Intent(this, typeof(QuestionActivity));
-                QuizIntent.PutExtra("NumberOfQuestions", NumberOfQuestion.Value.ToString());
-                StartActivity(QuizIntent);
+                Intent quizIntent = new Intent(this, typeof(QuestionActivity));
+                quizIntent.PutExtra("NumberOfQuestions", numberOfQuestion.Value.ToString());
+                StartActivity(quizIntent);
             };
         }
     }

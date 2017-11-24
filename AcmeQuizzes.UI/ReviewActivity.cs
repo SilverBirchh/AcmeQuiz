@@ -10,7 +10,7 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Review")]
     public class ReviewActivity : Activity
     {
-        QuizRespository QuestionRepository = new QuizRespository(); //TODO: make interface
+        QuizRespository questionRepository = new QuizRespository(); //TODO: make interface
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -20,25 +20,25 @@ namespace AcmeQuizzes.UI
             SetContentView(Resource.Layout.Review);
 
             // Grab the buttons and text view on the layout
-            Button StartAgainBtn = FindViewById<Button>(Resource.Id.again);
-            Button GoHomeBtn = FindViewById<Button>(Resource.Id.home);
-            TextView ReviewView = FindViewById<TextView>(Resource.Id.reviewQuestions);
+            Button startAgainBtn = FindViewById<Button>(Resource.Id.again);
+            Button goHomeBtn = FindViewById<Button>(Resource.Id.home);
+            TextView reviewView = FindViewById<TextView>(Resource.Id.reviewQuestions);
 
             // Set the review text
-            ReviewView.Text = GenerateReview();
+            reviewView.Text = GenerateReview();
 
             // Create Click handler to take the user to the PreQuizActivity page
-            StartAgainBtn.Click += delegate
+            startAgainBtn.Click += delegate
             {
-                Intent AgainIntent = new Intent(this, typeof(PreQuizActivity));
-                StartActivity(AgainIntent);
+                Intent againIntent = new Intent(this, typeof(PreQuizActivity));
+                StartActivity(againIntent);
             };
 
             // Create Click handler to take the user to the home page
-            GoHomeBtn.Click += delegate
+            goHomeBtn.Click += delegate
             {
-                Intent HomeIntent = new Intent(this, typeof(MainActivity));
-                StartActivity(HomeIntent);
+                Intent homeIntent = new Intent(this, typeof(MainActivity));
+                StartActivity(homeIntent);
             };
         }
 
@@ -51,10 +51,10 @@ namespace AcmeQuizzes.UI
         {
             StringBuilder sb = new StringBuilder();
             int count = 1;
-            foreach (KeyValuePair<int, bool> entry in QuizManager.AnsweredQuestions)
+            foreach (KeyValuePair<int, bool> entry in QuizManager.answeredQuestions)
             {
                 // Grab the full Question Object from the ID in AnsweredQuestions
-                Question question = QuestionRepository.GetQuestion(entry.Key);
+                Question question = questionRepository.GetQuestion(entry.Key);
 
                 // Set the details required to review the question
                 sb.AppendLine($"{count}. {question.QuestionText}");

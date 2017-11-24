@@ -10,19 +10,19 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Add / Edit Question")]
     public class EditQuestionActivity : Activity
     {
-        QuizRespository QuestionRepository = new QuizRespository(); //TODO: make interface
+        QuizRespository questionRepository = new QuizRespository(); //TODO: make interface
 
         // Array used to validate the CorrectAnswer property of a Question
-        string[] CorrectOptions = { "1", "2", "3", "4", "5" };
+        string[] correctOptions = { "1", "2", "3", "4", "5" };
 
         // Initialise UI variables that are needed outside OnCreate()
-        EditText QuestionTitleView;
-        EditText Op1View;
-        EditText Op2View;
-        EditText Op3View;
-        EditText Op4View;
-        EditText Op5View;
-        EditText CorrectView;
+        EditText questionTitleView;
+        EditText op1View;
+        EditText op2View;
+        EditText op3View;
+        EditText op4View;
+        EditText op5View;
+        EditText correctView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -33,37 +33,37 @@ namespace AcmeQuizzes.UI
 
             // Grab the UI elements from the layout and save them as variables
             TextView idView = FindViewById<TextView>(Resource.Id.qId);
-            QuestionTitleView = FindViewById<EditText>(Resource.Id.QTextEdit);
-            Op1View = FindViewById<EditText>(Resource.Id.op1Edit);
-            Op2View = FindViewById<EditText>(Resource.Id.op2Edit);
-            Op3View = FindViewById<EditText>(Resource.Id.op3Edit);
-            Op4View = FindViewById<EditText>(Resource.Id.op4Edit);
-            Op5View = FindViewById<EditText>(Resource.Id.op5Edit);
-            CorrectView = FindViewById<EditText>(Resource.Id.correctEdit);
-            Button SaveBtn = FindViewById<Button>(Resource.Id.save);
-            Button CnlBtn = FindViewById<Button>(Resource.Id.cnl);
-            Button DltBtn = FindViewById<Button>(Resource.Id.dlt);
+            questionTitleView = FindViewById<EditText>(Resource.Id.QTextEdit);
+            op1View = FindViewById<EditText>(Resource.Id.op1Edit);
+            op2View = FindViewById<EditText>(Resource.Id.op2Edit);
+            op3View = FindViewById<EditText>(Resource.Id.op3Edit);
+            op4View = FindViewById<EditText>(Resource.Id.op4Edit);
+            op5View = FindViewById<EditText>(Resource.Id.op5Edit);
+            correctView = FindViewById<EditText>(Resource.Id.correctEdit);
+            Button saveBtn = FindViewById<Button>(Resource.Id.save);
+            Button cnlBtn = FindViewById<Button>(Resource.Id.cnl);
+            Button dltBtn = FindViewById<Button>(Resource.Id.dlt);
 
             // The user may have reached this page by clicking on a question
             // Grab the QuestionId that might be on the intent.
             // If it is present set the correct text on the UI related to the correct question
-            string QuestionId = Intent.GetStringExtra("QuestionId");
-            if (QuestionId != null)
+            string questionId = Intent.GetStringExtra("QuestionId");
+            if (questionId != null)
             {
-                Question question = QuestionRepository.GetQuestion(Int32.Parse(QuestionId));
+                Question question = questionRepository.GetQuestion(Int32.Parse(questionId));
 
                 idView.Text = question.QuestionID.ToString();
-                QuestionTitleView.Text = question.QuestionText;
-                Op1View.Text = question.Option1;
-                Op2View.Text = question.Option2;
-                Op3View.Text = question.Option3;
-                Op4View.Text = question.Option4;
-                Op5View.Text = question.Option5;
-                CorrectView.Text = question.CorrectAnswer;
+                questionTitleView.Text = question.QuestionText;
+                op1View.Text = question.Option1;
+                op2View.Text = question.Option2;
+                op3View.Text = question.Option3;
+                op4View.Text = question.Option4;
+                op5View.Text = question.Option5;
+                correctView.Text = question.CorrectAnswer;
             }
 
             // Add a click listener to the save button
-            SaveBtn.Click += delegate
+            saveBtn.Click += delegate
             {
                 // Check if the Question Object is valid. If not alert the user of this
                 if (!IsValidQuestion())
@@ -74,13 +74,13 @@ namespace AcmeQuizzes.UI
 
                 // QuestionId is passed in from the intent to get to this page. If this is not set
                 // the user is creating a new question.
-                if (QuestionId != null)
+                if (questionId != null)
                 {
                     // Grab the question being editted
-                    Question question = QuestionRepository.GetQuestion(Int32.Parse(QuestionId));
+                    Question question = questionRepository.GetQuestion(Int32.Parse(questionId));
 
                     // Set new attributes on the question and save the edit
-                    QuestionRepository.EditQuestion(SetQuestionAttributes(question));
+                    questionRepository.EditQuestion(SetQuestionAttributes(question));
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace AcmeQuizzes.UI
                     Question question = new Question();
 
                     // Set all of the attributes on the Quesiton and save its
-                    QuestionRepository.SaveQuestion(SetQuestionAttributes(question));
+                    questionRepository.SaveQuestion(SetQuestionAttributes(question));
 
                 }
 
@@ -97,14 +97,14 @@ namespace AcmeQuizzes.UI
             };
 
             // Add a click listener to the delete button
-            DltBtn.Click += delegate
+            dltBtn.Click += delegate
             {
                 // The user can only delete a question if they have come to this page after clicking directly on a question
-                if (QuestionId != null)
+                if (questionId != null)
                 {
                     // Grab the correct question and delete it
-                    Question question = QuestionRepository.GetQuestion(Int32.Parse(QuestionId));
-                    QuestionRepository.DeleteQuestion(question);
+                    Question question = questionRepository.GetQuestion(Int32.Parse(questionId));
+                    questionRepository.DeleteQuestion(question);
                 }
 
                 // Return to the Admin page
@@ -112,10 +112,10 @@ namespace AcmeQuizzes.UI
             };
 
             // Add a click listener to the cancle button to return to the admin page
-            CnlBtn.Click += delegate
+            cnlBtn.Click += delegate
             {
-                Intent CnlIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(CnlIntent);
+                Intent cnlIntent = new Intent(this, typeof(AdminActivity));
+                StartActivity(cnlIntent);
             };
 
         }
@@ -133,29 +133,29 @@ namespace AcmeQuizzes.UI
             string[] PossibleAnswers = { "1", "2", "3", "4" };
 
             // Check to see if none of the required entries are null. Checks if each required input is not blank. 
-            isValid = QuestionTitleView.Text != null
-                                       && Op1View.Text != null
-                                       && Op2View.Text != null
-                                       && Op3View.Text != null
-                                       && Op3View.Text != null
-                                       && Op4View.Text != null
-                                       && CorrectView.Text != null
-                                       && QuestionTitleView.Text.Trim() != ""
-                                       && Op1View.Text.Trim() != ""
-                                       && Op2View.Text.Trim() != ""
-                                       && Op3View.Text.Trim() != ""
-                                       && Op3View.Text.Trim() != ""
-                                       && Op4View.Text.Trim() != "";
+            isValid = questionTitleView.Text != null
+                                       && op1View.Text != null
+                                       && op2View.Text != null
+                                       && op3View.Text != null
+                                       && op3View.Text != null
+                                       && op4View.Text != null
+                                       && correctView.Text != null
+                                       && questionTitleView.Text.Trim() != ""
+                                       && op1View.Text.Trim() != ""
+                                       && op2View.Text.Trim() != ""
+                                       && op3View.Text.Trim() != ""
+                                       && op3View.Text.Trim() != ""
+                                       && op4View.Text.Trim() != "";
 
             // If the first check is okay this step is run
             if (isValid)
             {
                 // Checks if CorrectView input contains a value from the PossibleAnswers array.
                 // Finally checks if the Option5 answer is not null or blank and the the correct answer is in PossibleAnswers or equals 5.
-                isValid = (PossibleAnswers.Contains(CorrectView.Text)
-                                               || (Op5View.Text != null && Op5View.Text != ""
-                                               && (CorrectView.Text.Equals("5")
-                                                       || PossibleAnswers.Contains(CorrectView.Text))));
+                isValid = (PossibleAnswers.Contains(correctView.Text)
+                                               || (op5View.Text != null && op5View.Text != ""
+                                               && (correctView.Text.Equals("5")
+                                                       || PossibleAnswers.Contains(correctView.Text))));
             }
 
             return isValid;
@@ -169,13 +169,13 @@ namespace AcmeQuizzes.UI
          */
         Question SetQuestionAttributes(Question question)
         {
-            question.QuestionText = QuestionTitleView.Text;
-            question.Option1 = Op1View.Text;
-            question.Option2 = Op2View.Text;
-            question.Option3 = Op3View.Text;
-            question.Option4 = Op4View.Text;
-            question.Option5 = Op5View.Text;
-            question.CorrectAnswer = CorrectView.Text;
+            question.QuestionText = questionTitleView.Text;
+            question.Option1 = op1View.Text;
+            question.Option2 = op2View.Text;
+            question.Option3 = op3View.Text;
+            question.Option4 = op4View.Text;
+            question.Option5 = op5View.Text;
+            question.CorrectAnswer = correctView.Text;
             return question;
         }
 

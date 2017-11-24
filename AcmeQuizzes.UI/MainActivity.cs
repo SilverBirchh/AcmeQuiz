@@ -15,50 +15,50 @@ namespace AcmeQuizzes.UI
 
 
             // First task is to create the question if they don't currently exist
-            var QuizFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var quizFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 
             // Fully qualified path of the DB file
-            var DbFile = Path.Combine(QuizFolder, "Quiz.sqlite");
+            var dbFile = Path.Combine(quizFolder, "Quiz.sqlite");
 
             // Checks if the file already exists on the users device
-            if (!System.IO.File.Exists(DbFile))
+            if (!System.IO.File.Exists(dbFile))
             {
                 // File does not exist so create it
-                var Database = Resources.OpenRawResource(Resource.Raw.Quiz);
-                FileStream WriteStream = new FileStream(DbFile,
+                var database = Resources.OpenRawResource(Resource.Raw.Quiz);
+                FileStream writeStream = new FileStream(dbFile,
                                                         FileMode.OpenOrCreate,
                                                         FileAccess.Write);
-                ReadWriteStream(Database, WriteStream);
+                ReadWriteStream(database, writeStream);
             }
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
             // Grab references to the buttons on the front page
-            Button InstructionsBtn = FindViewById<Button>(Resource.Id.GoInstructions);
-            Button StartQuizBtn = FindViewById<Button>(Resource.Id.StartQuiz);
-            Button AdminBtn = FindViewById<Button>(Resource.Id.admin);
+            Button instructionsBtn = FindViewById<Button>(Resource.Id.GoInstructions);
+            Button startQuizBtn = FindViewById<Button>(Resource.Id.StartQuiz);
+            Button adminBtn = FindViewById<Button>(Resource.Id.admin);
 
             // Create Click handler to take the user to the PreQuiz page
-            StartQuizBtn.Click += delegate
+            startQuizBtn.Click += delegate
             {
-                Intent PreQuizIntent = new Intent(this, typeof(PreQuizActivity));
-                StartActivity(PreQuizIntent);
+                Intent preQuizIntent = new Intent(this, typeof(PreQuizActivity));
+                StartActivity(preQuizIntent);
             };
 
             // Create Click handler to take the user to the Instructions page
-            InstructionsBtn.Click += delegate
+            instructionsBtn.Click += delegate
             {
-                Intent InstructionsIntent = new Intent(this, typeof(InstructionsActivity));
-                StartActivity(InstructionsIntent);
+                Intent instructionsIntent = new Intent(this, typeof(InstructionsActivity));
+                StartActivity(instructionsIntent);
             };
 
             // Create Click handler to take the user to the Admin page
             // TODO: Add user validation here
-            AdminBtn.Click += delegate
+            adminBtn.Click += delegate
             {
-                Intent AdminIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(AdminIntent);
+                Intent adminIntent = new Intent(this, typeof(AdminActivity));
+                StartActivity(adminIntent);
             };
 
         }
@@ -70,13 +70,13 @@ namespace AcmeQuizzes.UI
         {
             int length = 256;
             byte[] buffer = new byte[length];
-            int BytesRead = readStream.Read(buffer, 0, length);
+            int bytesRead = readStream.Read(buffer, 0, length);
 
             // Write the bytes
-            while (BytesRead > 0)
+            while (bytesRead > 0)
             {
-                writeStream.Write(buffer, 0, BytesRead);
-                BytesRead = readStream.Read(buffer, 0, length);
+                writeStream.Write(buffer, 0, bytesRead);
+                bytesRead = readStream.Read(buffer, 0, length);
             }
 
             readStream.Close();

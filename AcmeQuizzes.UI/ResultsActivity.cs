@@ -17,40 +17,40 @@ namespace AcmeQuizzes.UI
             SetContentView(Resource.Layout.Finish);
 
             // Grab the controls on the screen and the text view to show the score
-            Button StartAgainBtn = FindViewById<Button>(Resource.Id.again);
-            Button GoHomeBtn = FindViewById<Button>(Resource.Id.home);
-            Button GoReviewBtn = FindViewById<Button>(Resource.Id.review);
-            TextView ScoreView = FindViewById<TextView>(Resource.Id.score);
+            Button startAgainBtn = FindViewById<Button>(Resource.Id.again);
+            Button goHomeBtn = FindViewById<Button>(Resource.Id.home);
+            Button goReviewBtn = FindViewById<Button>(Resource.Id.review);
+            TextView scoreView = FindViewById<TextView>(Resource.Id.score);
 
             // Work out the amount of question asked and how many were correct
             // This is done by a the size of AnsweredQuestions List. This is then
             // filtered to keep only the questions that were correct. 
             // By the KeyValuePair Value being `true`. A count of these is taken
-            int AmountOfQuestions = QuizManager.AnsweredQuestions.Count();
-            int CorrectAnswers = QuizManager.AnsweredQuestions.Where(kvp => kvp.Value).Count();
+            int amountOfQuestions = QuizManager.answeredQuestions.Count();
+            int correctAnswers = QuizManager.answeredQuestions.Where(kvp => kvp.Value).Count();
 
             // Set the score
-            ScoreView.Text = $"{CorrectAnswers} / {AmountOfQuestions}";
+            scoreView.Text = $"{correctAnswers} / {amountOfQuestions}";
 
             // Create Click handler to take the user to the PreQuiz page
-            StartAgainBtn.Click += delegate
+            startAgainBtn.Click += delegate
             {
-                Intent AgainIntent = new Intent(this, typeof(PreQuizActivity));
-                StartActivity(AgainIntent);
+                Intent againIntent = new Intent(this, typeof(PreQuizActivity));
+                StartActivity(againIntent);
             };
 
             // Create Click handler to take the user to the home page
-            GoHomeBtn.Click += delegate
+            goHomeBtn.Click += delegate
             {
-                Intent HomeIntent = new Intent(this, typeof(MainActivity));
-                StartActivity(HomeIntent);
+                Intent homeIntent = new Intent(this, typeof(MainActivity));
+                StartActivity(homeIntent);
             };
 
             // Create Click handler to take the user to the review page
-            GoReviewBtn.Click += delegate
+            goReviewBtn.Click += delegate
             {
-                Intent ReviewIntent = new Intent(this, typeof(ReviewActivity));
-                StartActivity(ReviewIntent);
+                Intent reviewIntent = new Intent(this, typeof(ReviewActivity));
+                StartActivity(reviewIntent);
             };
         }
     }

@@ -9,7 +9,7 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Quiz")]
     public class QuestionActivity : Activity
     {
-        QuizManager QuestionManager = new QuizManager(); //TODO: make interface
+        QuizManager questionManager = new QuizManager(); //TODO: make interface
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -19,69 +19,69 @@ namespace AcmeQuizzes.UI
             SetContentView(Resource.Layout.Question);
 
             // Grab the number of questions that the user asked for from the intent
-            string NumberOfQuestions = Intent.GetStringExtra("NumberOfQuestions");
+            string numberOfQuestions = Intent.GetStringExtra("NumberOfQuestions");
 
             // Set up the QuestionManager for this session. This will initialise the
             // correct number of questions to ask the user and reset any
             // previous session.
-            QuestionManager.InitialseQuestions(Int32.Parse(NumberOfQuestions));
+            questionManager.InitialseQuestions(Int32.Parse(numberOfQuestions));
 
             // Grab the correct UI elements 
-            TextView QuestionTitle = FindViewById<TextView>(Resource.Id.questionNumber);
-            ListView AnswersView = FindViewById<ListView>(Resource.Id.answers);
+            TextView questionTitle = FindViewById<TextView>(Resource.Id.questionNumber);
+            ListView answersView = FindViewById<ListView>(Resource.Id.answers);
 
             // Grab the first question to show the user.
-            Question NextQuestion = QuestionManager.GetNextQuestion();
+            Question nextQuestion = questionManager.GetNextQuestion();
 
             // Initialse an array to store answers to show the user.
-            String[] Answers = null;
+            String[] answers = null;
 
             // Workout how many possibel answers there are for the given question and set Answers array
-            if (NextQuestion.Option5.Equals(""))
+            if (nextQuestion.Option5.Equals(""))
             {
-                Answers = new String[] { NextQuestion.Option1, NextQuestion.Option2, NextQuestion.Option3, NextQuestion.Option4 };
+                answers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4 };
             }
             else
             {
-                Answers = new String[] { NextQuestion.Option1, NextQuestion.Option2, NextQuestion.Option3, NextQuestion.Option4, NextQuestion.Option5 };
+                answers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4, nextQuestion.Option5 };
             }
 
             // Show the question and possible answers
-            QuestionTitle.Text = NextQuestion.QuestionText;
-            AnswersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, Answers);
+            questionTitle.Text = nextQuestion.QuestionText;
+            answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, answers);
 
             // Set up a click listener for when the user clicks an answer to a question
-            AnswersView.ItemClick += (s, args) =>
+            answersView.ItemClick += (s, args) =>
             {
                 // Send the answered question to the QuestionManager to store
-                QuestionManager.AnswerQuestion(NextQuestion.QuestionID, args.Position, NextQuestion.CorrectAnswer);
+                questionManager.AnswerQuestion(nextQuestion.QuestionID, args.Position, nextQuestion.CorrectAnswer);
 
                 // Check if there is another question to ask the user. If not the user should
                 // be taken to the results page
-                if (!QuestionManager.HasNextQuestion())
+                if (!questionManager.HasNextQuestion())
                 {
-                    Intent ResultsIntent = new Intent(this, typeof(ResultsActivity));
-                    StartActivity(ResultsIntent);
+                    Intent resultsIntent = new Intent(this, typeof(ResultsActivity));
+                    StartActivity(resultsIntent);
                     return;
                 }
 
                 // Grab the next question
-                NextQuestion = QuestionManager.GetNextQuestion();
+                nextQuestion = questionManager.GetNextQuestion();
 
                 // Like above set the question title and possible answers by working out and creating
                 // a new answers array and setting this as the adapter for AnswersView
-                String[] NewAnswers = null;
-                if (NextQuestion.Option5.Equals(""))
+                String[] newAnswers = null;
+                if (nextQuestion.Option5.Equals(""))
                 {
-                    NewAnswers = new String[] { NextQuestion.Option1, NextQuestion.Option2, NextQuestion.Option3, NextQuestion.Option4 };
+                    newAnswers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4 };
                 }
                 else
                 {
-                    NewAnswers = new String[] { NextQuestion.Option1, NextQuestion.Option2, NextQuestion.Option3, NextQuestion.Option4, NextQuestion.Option5 };
+                    newAnswers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4, nextQuestion.Option5 };
                 }
 
-                QuestionTitle.Text = NextQuestion.QuestionText;
-                AnswersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, NewAnswers);
+                questionTitle.Text = nextQuestion.QuestionText;
+                answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, newAnswers);
             };
 
         }

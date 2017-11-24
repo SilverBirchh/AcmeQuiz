@@ -10,8 +10,8 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Admin")]
     public class AdminActivity : Activity
     {
-        QuizRespository QuestionRepository = new QuizRespository(); //TODO: make interface
-        List<Question> AllQuestions;
+        QuizRespository questionRepository = new QuizRespository(); //TODO: make interface
+        List<Question> allQuestions;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -21,35 +21,35 @@ namespace AcmeQuizzes.UI
             SetContentView(Resource.Layout.Admin);
 
             // Grab the UI controls from the page
-            ListView QuestionsView = FindViewById<ListView>(Resource.Id.questionsList);
-            Button HomeBtn = FindViewById<Button>(Resource.Id.home);
-            Button AddBtn = FindViewById<Button>(Resource.Id.add);
+            ListView questionsView = FindViewById<ListView>(Resource.Id.questionsList);
+            Button homeBtn = FindViewById<Button>(Resource.Id.home);
+            Button addBtn = FindViewById<Button>(Resource.Id.add);
 
             // Fetch all of the questions and set them as the adapter for the ListView
-            string[] Questions = FetchQuestions();
-            QuestionsView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, Questions);
+            string[] questions = FetchQuestions();
+            questionsView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, questions);
 
             // Set up click listener to go back to the home page
-            HomeBtn.Click += delegate
+            homeBtn.Click += delegate
             {
-                Intent HomeIntent = new Intent(this, typeof(MainActivity));
-                StartActivity(HomeIntent);
+                Intent homeIntent = new Intent(this, typeof(MainActivity));
+                StartActivity(homeIntent);
             };
 
             // Set up click listener to take the user to add a question
-            AddBtn.Click += delegate
+            addBtn.Click += delegate
             {
-                Intent EditIntent = new Intent(this, typeof(EditQuestionActivity));
-                StartActivity(EditIntent);
+                Intent editIntent = new Intent(this, typeof(EditQuestionActivity));
+                StartActivity(editIntent);
             };
 
             // Set up item click to take the user to edit a question based off the questions
             // position within the AllQuestions List
-            QuestionsView.ItemClick += (s, args) =>
+            questionsView.ItemClick += (s, args) =>
             {
-                Intent GoEdit = new Intent(this, typeof(EditQuestionActivity));
-                GoEdit.PutExtra("QuestionId", AllQuestions[args.Position].QuestionID.ToString());
-                StartActivity(GoEdit);
+                Intent goEdit = new Intent(this, typeof(EditQuestionActivity));
+                goEdit.PutExtra("QuestionId", allQuestions[args.Position].QuestionID.ToString());
+                StartActivity(goEdit);
             };
         }
 
@@ -59,11 +59,11 @@ namespace AcmeQuizzes.UI
         {
             base.OnResume();
             // Fetch the questions view
-            ListView QuestionsView = FindViewById<ListView>(Resource.Id.questionsList);
+            ListView questionsView = FindViewById<ListView>(Resource.Id.questionsList);
 
             // Fetch all of the questions and set them as the adapter for the ListView
-            string[] Questions = FetchQuestions();
-            QuestionsView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, Questions);
+            string[] questions = FetchQuestions();
+            questionsView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, questions);
         }
 
         /*
@@ -74,8 +74,8 @@ namespace AcmeQuizzes.UI
         {
             int count = 1;
             List<string> questionArray = new List<string>();
-            AllQuestions = QuestionRepository.GetAllQuestions();
-            foreach (Question question in AllQuestions)
+            allQuestions = questionRepository.GetAllQuestions();
+            foreach (Question question in allQuestions)
             {
                 questionArray.Add($"{count}. {question.QuestionText}");
                 count++;

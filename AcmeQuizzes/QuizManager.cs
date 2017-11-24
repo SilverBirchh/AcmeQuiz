@@ -14,17 +14,17 @@ namespace AcmeQuizzes
         QuizRespository quizRepository = new QuizRespository();
 
         // Stores the questions to ask the user in a session
-        List<Question> LimitedQuestions = new List<Question>();
+        List<Question> limitedQuestions = new List<Question>();
 
         // Used to keep track of which question to ask next and when the end of the session will be.
-        int QuestionCount = 1;
+        int questionCount = 1;
 
         // Keeps track of the quetions answered by the user and if they were correct. Is static so that 
         // the list can persist across activities.
-        public static Dictionary<int, bool> AnsweredQuestions = new Dictionary<int, bool>();
+        public static Dictionary<int, bool> answeredQuestions = new Dictionary<int, bool>();
 
         // Stores question ID across a session so that the user is not asked the same question twice
-        static List<int> PreviousQuestions = new List<int>();
+        static List<int> previousQuestions = new List<int>();
 
         public QuizManager() { }
 
@@ -38,41 +38,41 @@ namespace AcmeQuizzes
          * 
          * @param int NumberOfQuestions - The number of questions the user wants to answer
          */
-        public void InitialseQuestions(int NumberOfQuestions)
+        public void InitialseQuestions(int numberOfQuestions)
         {
             // Reset the questions already answered by the user
-            AnsweredQuestions = new Dictionary<int, bool>();
+            answeredQuestions = new Dictionary<int, bool>();
 
             // Fetch entire list of questions
-            List<Question> AllQuestions = quizRepository.GetAllQuestions();
+            List<Question> allQuestions = quizRepository.GetAllQuestions();
 
             // Filter out the questions that the user has already been asked. This can mean AllQuestions could be size 0
-            var FilteredQuestions = AllQuestions.Where((question) => !PreviousQuestions.Contains(question.QuestionID));
+            var filteredQuestions = allQuestions.Where((question) => !previousQuestions.Contains(question.QuestionID));
 
             // In this case there are not enough questions left to give to the user
-            if (FilteredQuestions.Count() < NumberOfQuestions)
+            if (filteredQuestions.Count() < numberOfQuestions)
             {
 
                 // Add any remaining questions that are left
-                LimitedQuestions.AddRange(FilteredQuestions);
+                limitedQuestions.AddRange(filteredQuestions);
 
                 // Fetch the questions again and fill up LimitedQuestions to the correct amount
-                AllQuestions.Randomise();
-                for (int i = LimitedQuestions.Count() + 1; i <= NumberOfQuestions; i++)
+                allQuestions.Randomise();
+                for (int i = limitedQuestions.Count() + 1; i <= numberOfQuestions; i++)
                 {
-                    LimitedQuestions.Add(AllQuestions[i - 1]);
+                    limitedQuestions.Add(allQuestions[i - 1]);
                 }
 
                 // All questions have been asked so must reset this list 
-                PreviousQuestions = new List<int>();
+                previousQuestions = new List<int>();
             }
             else
             {
                 // Randomise the list of questions so they appear in a new order everytime
-                FilteredQuestions.ToList().Randomise();
-                for (int i = 1; i <= NumberOfQuestions; i++)
+                filteredQuestions.ToList().Randomise();
+                for (int i = 1; i <= numberOfQuestions; i++)
                 {
-                    LimitedQuestions.Add(FilteredQuestions.ToList()[i - 1]);
+                    limitedQuestions.Add(filteredQuestions.ToList()[i - 1]);
                 }
             }
         }
@@ -86,8 +86,8 @@ namespace AcmeQuizzes
          */
         public Question GetNextQuestion()
         {
-            Question NextQuestion = LimitedQuestions[QuestionCount - 1];
-            QuestionCount++;
+            Question NextQuestion = limitedQuestions[questionCount - 1];
+            questionCount++;
             return NextQuestion;
         }
 
@@ -101,7 +101,7 @@ namespace AcmeQuizzes
          */
         public bool HasNextQuestion()
         {
-            return QuestionCount <= LimitedQuestions.Count;
+            return questionCount <= limitedQuestions.Count;
         }
 
         /**
@@ -112,12 +112,12 @@ namespace AcmeQuizzes
          * @param int Answer - The numeric value that the user selected as the answer between 1 and 5
          * @param string CorrectAnswer - The actual option that is the correct answer to the question between 1 and 5
          */
-        public void AnswerQuestion(int QuestionID, int Answer, string CorrectAnswer)
+        public void AnswerQuestion(int questionID, int answer, string correctAnswer)
         {
-            Answer++;
-            bool IsCorrect = Answer.ToString().Equals(CorrectAnswer);
-            AnsweredQuestions.Add(QuestionID, IsCorrect);
-            PreviousQuestions.Add(QuestionID);
+            answer++;
+            bool IsCorrect = answer.ToString().Equals(correctAnswer);
+            answeredQuestions.Add(questionID, IsCorrect);
+            previousQuestions.Add(questionID);
         }
     }
 }

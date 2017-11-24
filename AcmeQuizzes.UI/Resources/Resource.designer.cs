@@ -227,9 +227,6 @@ namespace AcmeQuizzes.UI
 			// aapt resource value: 0x7f050000
 			public const int Hello = 2131034112;
 			
-			// aapt resource value: 0x7f050011
-			public const int QText = 2131034129;
-			
 			// aapt resource value: 0x7f05000e
 			public const int add = 2131034126;
 			
@@ -289,6 +286,9 @@ namespace AcmeQuizzes.UI
 			
 			// aapt resource value: 0x7f050008
 			public const int pre_quiz = 2131034120;
+			
+			// aapt resource value: 0x7f050011
+			public const int qText = 2131034129;
 			
 			// aapt resource value: 0x7f05000d
 			public const int review = 2131034125;
