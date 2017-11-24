@@ -93,8 +93,7 @@ namespace AcmeQuizzes.UI
                 }
 
                 // Return to the Admin page
-                Intent SaveIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(SaveIntent);
+                Finish();
             };
 
             // Add a click listener to the delete button
@@ -109,8 +108,7 @@ namespace AcmeQuizzes.UI
                 }
 
                 // Return to the Admin page
-                Intent DltIntent = new Intent(this, typeof(AdminActivity));
-                StartActivity(DltIntent);
+                Finish();
             };
 
             // Add a click listener to the cancle button to return to the admin page

@@ -53,6 +53,19 @@ namespace AcmeQuizzes.UI
             };
         }
 
+        // OnResume of the activty. The user may come here after saving / editing / deleting an activity
+        // We need to repopulate the list of qustions.
+        protected override void OnResume()
+        {
+            base.OnResume();
+            // Fetch the questions view
+            ListView QuestionsView = FindViewById<ListView>(Resource.Id.questionsList);
+
+            // Fetch all of the questions and set them as the adapter for the ListView
+            string[] Questions = FetchQuestions();
+            QuestionsView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, Questions);
+        }
+
         /*
          * Method to fetch all questions in the DB and create an array of Strings
          * which are in the format "Number. Question Text"
