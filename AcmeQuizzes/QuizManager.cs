@@ -16,15 +16,15 @@ namespace AcmeQuizzes
         // Stores the questions to ask the user in a session
         List<Question> LimitedQuestions = new List<Question>();
 
-        // Stores question ID across a session so that the user is not asked the same question twice
-        static List<int> PreviousQuestions = new List<int>();
-
         // Used to keep track of which question to ask next and when the end of the session will be.
         int QuestionCount = 1;
 
         // Keeps track of the quetions answered by the user and if they were correct. Is static so that 
         // the list can persist across activities.
         public static Dictionary<int, bool> AnsweredQuestions = new Dictionary<int, bool>();
+
+        // Stores question ID across a session so that the user is not asked the same question twice
+        static List<int> PreviousQuestions = new List<int>();
 
         public QuizManager() { }
 

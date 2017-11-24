@@ -59,7 +59,7 @@ namespace AcmeQuizzes.UI
                 // Set the details required to review the question
                 sb.AppendLine($"{count}. {question.QuestionText}");
                 sb.AppendLine($"{(entry.Value ? "Correct" : "Incorrect")}");
-                sb.AppendLine($"Answer: {GetAnswer(question, question.CorrectAnswer)}\n");
+                sb.AppendLine($"Correct answer: {GetAnswer(question, question.CorrectAnswer)}\n");
                 count++;
             }
 

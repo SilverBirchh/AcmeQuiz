@@ -7,7 +7,7 @@ using Android.Widget;
 
 namespace AcmeQuizzes.UI
 {
-    [Activity(Label = "Edit Question")]
+    [Activity(Label = "Add / Edit Question")]
     public class EditQuestionActivity : Activity
     {
         QuizRespository QuestionRepository = new QuizRespository(); //TODO: make interface
