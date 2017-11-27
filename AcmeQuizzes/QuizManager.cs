@@ -21,7 +21,7 @@ namespace AcmeQuizzes
 
         // Keeps track of the quetions answered by the user and if they were correct. Is static so that 
         // the list can persist across activities.
-        public static Dictionary<int, bool> answeredQuestions = new Dictionary<int, bool>();
+        public static Dictionary<Question, string> answeredQuestions = new Dictionary<Question, string>();
 
         // Stores question ID across a session so that the user is not asked the same question twice
         static List<int> previousQuestions = new List<int>();
@@ -41,13 +41,13 @@ namespace AcmeQuizzes
         public void InitialseQuestions(int numberOfQuestions)
         {
             // Reset the questions already answered by the user
-            answeredQuestions = new Dictionary<int, bool>();
+            answeredQuestions = new Dictionary<Question, string>();
 
             // Fetch entire list of questions
             List<Question> allQuestions = quizRepository.GetAllQuestions();
 
             // Filter out the questions that the user has already been asked. This can mean AllQuestions could be size 0
-            var filteredQuestions = allQuestions.Where((question) => !previousQuestions.Contains(question.QuestionID));
+            var filteredQuestions = allQuestions.Where((question) => !previousQuestions.Contains(question.QuestionID)).ToList();
 
             // In this case there are not enough questions left to give to the user
             if (filteredQuestions.Count() < numberOfQuestions)
@@ -69,10 +69,10 @@ namespace AcmeQuizzes
             else
             {
                 // Randomise the list of questions so they appear in a new order everytime
-                filteredQuestions.ToList().Randomise();
+                filteredQuestions.Randomise();
                 for (int i = 1; i <= numberOfQuestions; i++)
                 {
-                    limitedQuestions.Add(filteredQuestions.ToList()[i - 1]);
+                    limitedQuestions.Add(filteredQuestions[i - 1]);
                 }
             }
         }
@@ -106,18 +106,29 @@ namespace AcmeQuizzes
 
         /**
          * Method used to record an answer to a question. Works out if the answer the 
-         * user gave as equal to the correct answer. Adds to AnsweredQuestions and PreviousQuestions
+         * user gave as equal to the correct answer. Adds to AnsweredQuestions and PreviousQuestions.
+         * The user could go back to a question. If catch ArgumentException becuase the ID already exists in
+         * answeredQuestions and call this method again
          * 
          * @param int QuestionID - The Id of the question that has just been answered
          * @param int Answer - The numeric value that the user selected as the answer between 1 and 5
          * @param string CorrectAnswer - The actual option that is the correct answer to the question between 1 and 5
          */
-        public void AnswerQuestion(int questionID, int answer, string correctAnswer)
+        public void AnswerQuestion(Question question, int answer)
         {
-            answer++;
-            bool IsCorrect = answer.ToString().Equals(correctAnswer);
-            answeredQuestions.Add(questionID, IsCorrect);
-            previousQuestions.Add(questionID);
+            try
+            {
+                answer++;
+                answeredQuestions.Add(question, answer.ToString());
+                previousQuestions.Add(question.QuestionID);
+            }
+            catch (ArgumentException)
+            {
+                // TODO: This doesn't work
+                //answeredQuestions.Remove(questionID);
+                //answeredQuestions.Remove(questionID);
+                //AnswerQuestion(questionID, answer, correctAnswer);
+            }
         }
     }
 }

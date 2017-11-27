@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using Android.App;
 using Android.Content;
@@ -51,19 +52,37 @@ namespace AcmeQuizzes.UI
         {
             StringBuilder sb = new StringBuilder();
             int count = 1;
-            foreach (KeyValuePair<int, bool> entry in QuizManager.answeredQuestions)
+            foreach (KeyValuePair<Question, string> entry in QuizManager.answeredQuestions)
             {
-                // Grab the full Question Object from the ID in AnsweredQuestions
-                Question question = questionRepository.GetQuestion(entry.Key);
-
                 // Set the details required to review the question
-                sb.AppendLine($"{count}. {question.QuestionText}");
-                sb.AppendLine($"{(entry.Value ? "Correct" : "Incorrect")}");
-                sb.AppendLine($"Correct answer: {GetAnswer(question, question.CorrectAnswer)}\n");
+                sb.AppendLine($"{count}. {entry.Key.QuestionText}");
+                sb.AppendLine($"You were {(entry.Value.Equals(entry.Key.CorrectAnswer) ? "Correct." : "Incorrect.")}");
+                sb.AppendLine($"{(entry.Key.Option1)} {MarkOption(entry.Key, entry.Value, "1")}");
+                sb.AppendLine($"{(entry.Key.Option2)} {MarkOption(entry.Key, entry.Value, "2")}");
+                sb.AppendLine($"{(entry.Key.Option3)} {MarkOption(entry.Key, entry.Value, "3")}");
+                sb.AppendLine($"{(entry.Key.Option4)} {MarkOption(entry.Key, entry.Value, "4")}");
+                if (!entry.Key.Option5.Equals(""))
+                {
+                    sb.AppendLine($"{(entry.Key.Option5)} {MarkOption(entry.Key, entry.Value, "5")}");
+                }
+                sb.AppendLine("\n");
                 count++;
             }
 
             return sb.ToString();
+        }
+
+        private string MarkOption(Question question, string userAnswer, string optionToMark)
+        {
+            if ((question.CorrectAnswer.Equals(userAnswer) && question.CorrectAnswer.Equals(optionToMark)) || question.CorrectAnswer.Equals(optionToMark))
+            {
+                return " - Correct answer";
+            }
+            else if (optionToMark.Equals(userAnswer) && !question.CorrectAnswer.Equals(userAnswer))
+            {
+                return " - Your answer";
+            }
+            return "";
         }
 
         /*

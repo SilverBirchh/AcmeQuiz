@@ -54,7 +54,8 @@ namespace AcmeQuizzes.UI
             answersView.ItemClick += (s, args) =>
             {
                 // Send the answered question to the QuestionManager to store
-                questionManager.AnswerQuestion(nextQuestion.QuestionID, args.Position, nextQuestion.CorrectAnswer);
+                questionManager.AnswerQuestion(nextQuestion, args.Position);
+
 
                 // Check if there is another question to ask the user. If not the user should
                 // be taken to the results page

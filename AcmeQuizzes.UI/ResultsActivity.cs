@@ -27,7 +27,7 @@ namespace AcmeQuizzes.UI
             // filtered to keep only the questions that were correct. 
             // By the KeyValuePair Value being `true`. A count of these is taken
             int amountOfQuestions = QuizManager.answeredQuestions.Count();
-            int correctAnswers = QuizManager.answeredQuestions.Where(kvp => kvp.Value).Count();
+            int correctAnswers = QuizManager.answeredQuestions.Where(kvp => kvp.Key.CorrectAnswer.Equals(kvp.Value)).Count();
 
             // Set the score
             scoreView.Text = $"{correctAnswers} / {amountOfQuestions}";
