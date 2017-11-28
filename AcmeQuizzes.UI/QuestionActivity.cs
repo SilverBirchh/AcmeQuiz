@@ -28,7 +28,9 @@ namespace AcmeQuizzes.UI
 
             // Grab the correct UI elements 
             TextView questionTitle = FindViewById<TextView>(Resource.Id.questionNumber);
+            Button nextBtn = FindViewById<Button>(Resource.Id.next);
             ListView answersView = FindViewById<ListView>(Resource.Id.answers);
+            answersView.ChoiceMode = ChoiceMode.Single;
 
             // Grab the first question to show the user.
             Question nextQuestion = questionManager.GetNextQuestion();
@@ -48,13 +50,25 @@ namespace AcmeQuizzes.UI
 
             // Show the question and possible answers
             questionTitle.Text = nextQuestion.QuestionText;
-            answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, answers);
+            answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemSingleChoice, answers);
+
+            // Used to track the users answer
+            int answerChoice = -1;
 
             // Set up a click listener for when the user clicks an answer to a question
             answersView.ItemClick += (s, args) =>
             {
+                answerChoice = args.Position;
+            };
+
+            nextBtn.Click += delegate
+            {
+                if (answerChoice == -1)
+                {
+                    return;
+                }
                 // Send the answered question to the QuestionManager to store
-                questionManager.AnswerQuestion(nextQuestion, args.Position);
+                questionManager.AnswerQuestion(nextQuestion, answerChoice);
 
 
                 // Check if there is another question to ask the user. If not the user should
@@ -82,9 +96,27 @@ namespace AcmeQuizzes.UI
                 }
 
                 questionTitle.Text = nextQuestion.QuestionText;
-                answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, newAnswers);
+                answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemSingleChoice, newAnswers);
+
+                // Reset the selected answer
+                answerChoice = -1;
             };
 
+        }
+
+        /*
+         * Method to throw an that the question has not been answered
+         */
+        void ThrowAlert()
+        {
+            RunOnUiThread(() =>
+            {
+                var builder = new AlertDialog.Builder(this);
+                builder.SetTitle("Invalid Question");
+                builder.SetMessage("Please select an answer.");
+                builder.SetPositiveButton("Ok", (sender, e) => { });
+                builder.Show();
+            });
         }
     }
 }

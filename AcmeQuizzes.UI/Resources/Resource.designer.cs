@@ -91,6 +91,9 @@ namespace AcmeQuizzes.UI
 			// aapt resource value: 0x7f060004
 			public const int linearLayout1 = 2131099652;
 			
+			// aapt resource value: 0x7f06001e
+			public const int next = 2131099678;
+			
 			// aapt resource value: 0x7f060008
 			public const int op1Edit = 2131099656;
 			
@@ -118,8 +121,8 @@ namespace AcmeQuizzes.UI
 			// aapt resource value: 0x7f060012
 			public const int review = 2131099666;
 			
-			// aapt resource value: 0x7f06001e
-			public const int reviewQuestions = 2131099678;
+			// aapt resource value: 0x7f06001f
+			public const int reviewQuestions = 2131099679;
 			
 			// aapt resource value: 0x7f06000e
 			public const int save = 2131099662;
