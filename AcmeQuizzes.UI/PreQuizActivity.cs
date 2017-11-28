@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views.InputMethods;
 using Android.Widget;
 
 namespace AcmeQuizzes.UI
@@ -27,6 +28,15 @@ namespace AcmeQuizzes.UI
             // number of questions the user asked for.
             startQuizBtn.Click += delegate
             {
+                var inputMethodManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
+
+                // Incase the user has typed in a value and click start we need to force the correct
+                // selected item
+                if (inputMethodManager.IsAcceptingText)
+                {
+                    numberOfQuestion.ClearFocus();
+                    inputMethodManager.HideSoftInputFromWindow(numberOfQuestion.WindowToken, 0);
+                }
                 Intent quizIntent = new Intent(this, typeof(QuestionActivity));
                 quizIntent.PutExtra("NumberOfQuestions", numberOfQuestion.Value.ToString());
                 StartActivity(quizIntent);

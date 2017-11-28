@@ -53,6 +53,7 @@ namespace AcmeQuizzes.UI
             answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemSingleChoice, answers);
 
             // Used to track the users answer
+            // TODO: remove this and replace with SelectedItem
             int answerChoice = -1;
 
             // Set up a click listener for when the user clicks an answer to a question
@@ -65,6 +66,7 @@ namespace AcmeQuizzes.UI
             {
                 if (answerChoice == -1)
                 {
+                    ThrowAlert();
                     return;
                 }
                 // Send the answered question to the QuestionManager to store
@@ -112,7 +114,7 @@ namespace AcmeQuizzes.UI
             RunOnUiThread(() =>
             {
                 var builder = new AlertDialog.Builder(this);
-                builder.SetTitle("Invalid Question");
+                builder.SetTitle("No Answer Selected");
                 builder.SetMessage("Please select an answer.");
                 builder.SetPositiveButton("Ok", (sender, e) => { });
                 builder.Show();
