@@ -9,7 +9,7 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Quiz")]
     public class QuestionActivity : Activity
     {
-        QuizManager questionManager = new QuizManager(); //TODO: make interface
+        QuizManager questionManager = new QuizManager();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

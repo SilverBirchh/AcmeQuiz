@@ -11,7 +11,7 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Review")]
     public class ReviewActivity : Activity
     {
-        QuizRespository questionRepository = new QuizRespository(); //TODO: make interface
+        QuizRespository questionRepository = new QuizRespository();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -83,31 +83,6 @@ namespace AcmeQuizzes.UI
                 return " - Your answer";
             }
             return "";
-        }
-
-        /*
-         * Method used to return the text value of the answer for a question.
-         * TODO: Pull out to Core logic
-         * @return string
-         */
-        private string GetAnswer(Question question, string optionNumber)
-        {
-            switch (optionNumber)
-            {
-                case "1":
-                    return question.Option1;
-                case "2":
-                    return question.Option2;
-                case "3":
-                    return question.Option3;
-                case "4":
-                    return question.Option4;
-                case "5":
-                    return question.Option5;
-                default:
-                    return "Unable to find question answer.";
-
-            }
         }
     }
 }

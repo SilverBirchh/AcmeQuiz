@@ -10,7 +10,7 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Admin")]
     public class AdminActivity : Activity
     {
-        QuizRespository questionRepository = new QuizRespository(); //TODO: make interface
+        QuizRespository questionRepository = new QuizRespository();
         List<Question> allQuestions;
 
         protected override void OnCreate(Bundle savedInstanceState)

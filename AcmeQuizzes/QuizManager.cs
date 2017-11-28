@@ -124,10 +124,8 @@ namespace AcmeQuizzes
             }
             catch (ArgumentException)
             {
-                // TODO: This doesn't work
-                //answeredQuestions.Remove(questionID);
-                //answeredQuestions.Remove(questionID);
-                //AnswerQuestion(questionID, answer, correctAnswer);
+                answeredQuestions.Remove(question);
+                AnswerQuestion(question, answer - 1);
             }
         }
     }

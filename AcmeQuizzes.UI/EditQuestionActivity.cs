@@ -10,7 +10,7 @@ namespace AcmeQuizzes.UI
     [Activity(Label = "Add / Edit Question")]
     public class EditQuestionActivity : Activity
     {
-        QuizRespository questionRepository = new QuizRespository(); //TODO: make interface
+        QuizRespository questionRepository = new QuizRespository();
 
         // Array used to validate the CorrectAnswer property of a Question
         string[] correctOptions = { "1", "2", "3", "4", "5" };
