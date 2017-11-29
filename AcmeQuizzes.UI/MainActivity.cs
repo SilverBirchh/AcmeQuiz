@@ -54,7 +54,6 @@ namespace AcmeQuizzes.UI
             };
 
             // Create Click handler to take the user to the Admin page
-            // TODO: Add user validation here
             adminBtn.Click += delegate
             {
                 Intent adminIntent = new Intent(this, typeof(AdminActivity));

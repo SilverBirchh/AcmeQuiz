@@ -70,7 +70,7 @@ namespace AcmeQuizzes.UI
          * Method to fetch all questions in the DB and create an array of Strings
          * which are in the format "Number. Question Text"
          */
-        private string[] FetchQuestions() // TODO: Change this to just be a DB call.
+        private string[] FetchQuestions()
         {
             int count = 1;
             List<string> questionArray = new List<string>();

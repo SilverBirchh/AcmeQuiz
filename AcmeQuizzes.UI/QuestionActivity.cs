@@ -53,7 +53,6 @@ namespace AcmeQuizzes.UI
             answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemSingleChoice, answers);
 
             // Used to track the users answer
-            // TODO: remove this and replace with SelectedItem
             int answerChoice = -1;
 
             // Set up a click listener for when the user clicks an answer to a question

@@ -12,8 +12,8 @@ namespace AcmeQuizzes.UI
     {
         QuizRespository questionRepository = new QuizRespository();
 
-        // Array used to validate the CorrectAnswer property of a Question
-        string[] correctOptions = { "1", "2", "3", "4", "5" };
+        // The possible correct answers for a question. Minus the option "5".
+        string[] PossibleAnswers = { "1", "2", "3", "4" };
 
         // Initialise UI variables that are needed outside OnCreate()
         EditText questionTitleView;
@@ -122,18 +122,28 @@ namespace AcmeQuizzes.UI
 
         /*
          * Method to determine if the question being added is valid or not.
-         * TODO: Simplify this check
          * @return bool
          */
         bool IsValidQuestion()
         {
             bool isValid = true;
 
-            // The possible correct answers for a question. Minus the option "5".
-            string[] PossibleAnswers = { "1", "2", "3", "4" };
+            isValid = AnswerOptionsAreNotNullOrBlank();
+
+            // If the first check is okay this step is run
+            if (isValid)
+            {
+                isValid = CorrectAnswerIsValid();
+            }
+
+            return isValid;
+        }
+
+        private bool AnswerOptionsAreNotNullOrBlank()
+        {
 
             // Check to see if none of the required entries are null. Checks if each required input is not blank. 
-            isValid = questionTitleView.Text != null
+            return questionTitleView.Text != null
                                        && op1View.Text != null
                                        && op2View.Text != null
                                        && op3View.Text != null
@@ -146,19 +156,16 @@ namespace AcmeQuizzes.UI
                                        && op3View.Text.Trim() != ""
                                        && op3View.Text.Trim() != ""
                                        && op4View.Text.Trim() != "";
+        }
 
-            // If the first check is okay this step is run
-            if (isValid)
-            {
-                // Checks if CorrectView input contains a value from the PossibleAnswers array.
-                // Finally checks if the Option5 answer is not null or blank and the the correct answer is in PossibleAnswers or equals 5.
-                isValid = (PossibleAnswers.Contains(correctView.Text)
-                                               || (op5View.Text != null && op5View.Text != ""
-                                               && (correctView.Text.Equals("5")
-                                                       || PossibleAnswers.Contains(correctView.Text))));
-            }
-
-            return isValid;
+        private bool CorrectAnswerIsValid()
+        {
+            // Checks if CorrectView input contains a value from the PossibleAnswers array.
+            // Finally checks if the Option5 answer is not null or blank and the the correct answer is in PossibleAnswers or equals 5.
+            return (PossibleAnswers.Contains(correctView.Text)
+                                           || (op5View.Text != null && op5View.Text != ""
+                                           && (correctView.Text.Equals("5")
+                                           || PossibleAnswers.Contains(correctView.Text))));
         }
 
         /*
