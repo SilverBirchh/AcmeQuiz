@@ -14,6 +14,7 @@ namespace AcmeQuizzes.UI
         Question nextQuestion;
 
         TextView questionTitle;
+
         ListView answersView;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -43,7 +44,7 @@ namespace AcmeQuizzes.UI
             // Show the first question to the user
             SetQuestionUIElements();
 
-            // Used to track the users answer
+            // Used to track the users answer. Cannot get answersView.SelectedItem to work
             int answerChoice = -1;
 
             // Set up a click listener for when the user clicks an answer to a question
