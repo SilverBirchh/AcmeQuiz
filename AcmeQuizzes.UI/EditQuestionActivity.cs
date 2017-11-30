@@ -13,7 +13,7 @@ namespace AcmeQuizzes.UI
         QuizRespository questionRepository = new QuizRespository();
 
         // The possible correct answers for a question. Minus the option "5".
-        string[] PossibleAnswers = { "1", "2", "3", "4" };
+        string[] possibleAnswers = { "1", "2", "3", "4" };
 
         // Initialise UI variables that are needed outside OnCreate()
         EditText questionTitleView;
@@ -126,17 +126,7 @@ namespace AcmeQuizzes.UI
          */
         bool IsValidQuestion()
         {
-            bool isValid = true;
-
-            isValid = AnswerOptionsAreNotNullOrBlank();
-
-            // If the first check is okay this step is run
-            if (isValid)
-            {
-                isValid = CorrectAnswerIsValid();
-            }
-
-            return isValid;
+            return AnswerOptionsAreNotNullOrBlank() && CorrectAnswerIsValid();
         }
 
         private bool AnswerOptionsAreNotNullOrBlank()
@@ -162,10 +152,10 @@ namespace AcmeQuizzes.UI
         {
             // Checks if CorrectView input contains a value from the PossibleAnswers array.
             // Finally checks if the Option5 answer is not null or blank and the the correct answer is in PossibleAnswers or equals 5.
-            return (PossibleAnswers.Contains(correctView.Text)
+            return (possibleAnswers.Contains(correctView.Text)
                                            || (op5View.Text != null && op5View.Text != ""
                                            && (correctView.Text.Equals("5")
-                                           || PossibleAnswers.Contains(correctView.Text))));
+                                           || possibleAnswers.Contains(correctView.Text))));
         }
 
         /*

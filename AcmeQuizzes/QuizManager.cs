@@ -95,9 +95,9 @@ namespace AcmeQuizzes
          */
         public Question GetNextQuestion()
         {
-            Question NextQuestion = limitedQuestions[questionCount - 1];
+            Question nextQuestion = limitedQuestions[questionCount - 1];
             questionCount++;
-            return NextQuestion;
+            return nextQuestion;
         }
 
         /**

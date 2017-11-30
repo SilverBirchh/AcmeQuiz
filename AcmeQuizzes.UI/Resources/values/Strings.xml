@@ -6,10 +6,9 @@
 	<string name="home">Home</string>
 	<string name="instructions">Instructions</string>
 	<string name="instruction_text">To start a new quiz tap \"New Quiz\". Fill in the number of questions that you 
-	want to answer, from 1 to 20. Tap \"Start\" and you will be given random questions to answer. If you do not know
-	an answer to a question just tap \"skip\".
-	\n\nAt the end of the quiz you will be presented with your score and the correct answers for each question. 
-	If you want to try again with a new set of questions tab \"Try again\".</string>
+	want to answer, from 1 to 20. Tap \"Start\" and you will be given random questions to answer. 
+		Pick a random question if you aren\'t to sure of the answer!\n\nAt the end of the quiz you will be presented with your score and the correct answers for each question. 
+	If you want to try again with a new set of questions tap \"Try again\".</string>
 	<string name="pre_quiz">How questions would you like?</string>
 	<string name="number_rule">You can pick between 1 and 20</string>
 	<string name="next">Next</string>
