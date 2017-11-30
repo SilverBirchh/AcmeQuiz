@@ -93,11 +93,20 @@ namespace AcmeQuizzes.UI
             String[] newAnswers = null;
             if (nextQuestion.Option5.Equals(""))
             {
-                newAnswers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4 };
+                newAnswers = new String[] {
+                    nextQuestion.Option1,
+                    nextQuestion.Option2,
+                    nextQuestion.Option3,
+                    nextQuestion.Option4 };
             }
             else
             {
-                newAnswers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4, nextQuestion.Option5 };
+                newAnswers = new String[] {
+                    nextQuestion.Option1,
+                    nextQuestion.Option2,
+                    nextQuestion.Option3,
+                    nextQuestion.Option4,
+                    nextQuestion.Option5 };
             }
 
             questionTitle.Text = nextQuestion.QuestionText;
