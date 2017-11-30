@@ -46,6 +46,15 @@ namespace AcmeQuizzes
             // Fetch entire list of questions
             List<Question> allQuestions = quizRepository.GetAllQuestions();
 
+            // Defensive check in case there are not enough question in the DB to ask the user
+            numberOfQuestions = allQuestions.Count() < numberOfQuestions ? allQuestions.Count() : numberOfQuestions;
+
+            SetQuestionsToAskUserWithFilter(numberOfQuestions, allQuestions);
+        }
+
+        private void SetQuestionsToAskUserWithFilter(int numberOfQuestions, List<Question> allQuestions)
+        {
+
             // Filter out the questions that the user has already been asked. This can mean AllQuestions could be size 0
             var filteredQuestions = allQuestions.Where((question) => !previousQuestions.Contains(question.QuestionID)).ToList();
 
