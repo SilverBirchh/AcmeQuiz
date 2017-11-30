@@ -72,6 +72,15 @@ namespace AcmeQuizzes.UI
             return sb.ToString();
         }
 
+        /*
+         * Method to add a remark to a question answer. Will work out if the option to mark is the correct
+         * option and mark it as the correct answer. Will work out if the answer was wrong and if this was 
+         * the option selected by the user and will mark the question as such.
+         * 
+         * @param question - Question Object
+         * @param userAnswer - The option the user selected
+         * @param optionToMark - The question option answer number to mark  
+         */
         private string MarkOption(Question question, string userAnswer, string optionToMark)
         {
             if ((question.CorrectAnswer.Equals(userAnswer) && question.CorrectAnswer.Equals(optionToMark)) || question.CorrectAnswer.Equals(optionToMark))

@@ -11,6 +11,11 @@ namespace AcmeQuizzes.UI
     {
         QuizManager questionManager = new QuizManager();
 
+        Question nextQuestion;
+
+        TextView questionTitle;
+        ListView answersView;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -27,30 +32,16 @@ namespace AcmeQuizzes.UI
             questionManager.InitialseQuestions(Int32.Parse(numberOfQuestions));
 
             // Grab the correct UI elements 
-            TextView questionTitle = FindViewById<TextView>(Resource.Id.questionNumber);
+            questionTitle = FindViewById<TextView>(Resource.Id.questionNumber);
             Button nextBtn = FindViewById<Button>(Resource.Id.next);
-            ListView answersView = FindViewById<ListView>(Resource.Id.answers);
+            answersView = FindViewById<ListView>(Resource.Id.answers);
             answersView.ChoiceMode = ChoiceMode.Single;
 
             // Grab the first question to show the user.
-            Question nextQuestion = questionManager.GetNextQuestion();
+            nextQuestion = questionManager.GetNextQuestion();
 
-            // Initialse an array to store answers to show the user.
-            String[] answers = null;
-
-            // Workout how many possibel answers there are for the given question and set Answers array
-            if (nextQuestion.Option5.Equals(""))
-            {
-                answers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4 };
-            }
-            else
-            {
-                answers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4, nextQuestion.Option5 };
-            }
-
-            // Show the question and possible answers
-            questionTitle.Text = nextQuestion.QuestionText;
-            answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemSingleChoice, answers);
+            // Show the first question to the user
+            SetQuestionUIElements();
 
             // Used to track the users answer
             int answerChoice = -1;
@@ -65,7 +56,7 @@ namespace AcmeQuizzes.UI
             {
                 if (answerChoice == -1)
                 {
-                    ThrowAlert();
+                    ThrowNoQuestionAnsweredAlert();
                     return;
                 }
                 // Send the answered question to the QuestionManager to store
@@ -84,20 +75,8 @@ namespace AcmeQuizzes.UI
                 // Grab the next question
                 nextQuestion = questionManager.GetNextQuestion();
 
-                // Like above set the question title and possible answers by working out and creating
-                // a new answers array and setting this as the adapter for AnswersView
-                String[] newAnswers = null;
-                if (nextQuestion.Option5.Equals(""))
-                {
-                    newAnswers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4 };
-                }
-                else
-                {
-                    newAnswers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4, nextQuestion.Option5 };
-                }
-
-                questionTitle.Text = nextQuestion.QuestionText;
-                answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemSingleChoice, newAnswers);
+                // Show the next question
+                SetQuestionUIElements();
 
                 // Reset the selected answer
                 answerChoice = -1;
@@ -106,9 +85,28 @@ namespace AcmeQuizzes.UI
         }
 
         /*
+         * Method to set the UI elements correctly and show the questio to the user
+         */
+        void SetQuestionUIElements()
+        {
+            String[] newAnswers = null;
+            if (nextQuestion.Option5.Equals(""))
+            {
+                newAnswers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4 };
+            }
+            else
+            {
+                newAnswers = new String[] { nextQuestion.Option1, nextQuestion.Option2, nextQuestion.Option3, nextQuestion.Option4, nextQuestion.Option5 };
+            }
+
+            questionTitle.Text = nextQuestion.QuestionText;
+            answersView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemSingleChoice, newAnswers);
+        }
+
+        /*
          * Method to throw an that the question has not been answered
          */
-        void ThrowAlert()
+        void ThrowNoQuestionAnsweredAlert()
         {
             RunOnUiThread(() =>
             {

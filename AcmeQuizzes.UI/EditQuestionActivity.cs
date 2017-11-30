@@ -68,7 +68,7 @@ namespace AcmeQuizzes.UI
                 // Check if the Question Object is valid. If not alert the user of this
                 if (!IsValidQuestion())
                 {
-                    ThrowAlert();
+                    ThrowInvalidQuestionAlert();
                     return;
                 }
 
@@ -189,7 +189,7 @@ namespace AcmeQuizzes.UI
         /*
          * Method to throw an alert to the user that something is wrong with the question trying to be saved
          */
-        void ThrowAlert()
+        void ThrowInvalidQuestionAlert()
         {
             RunOnUiThread(() =>
             {
